@@ -9,26 +9,25 @@
 </head>
 <body class="h-dvh w-dvw">
     <div id="sub-root" class="bg-gradient-to-br from-gray-950 via-sky-950 to-sky-900 from-45% via-85% to-95% h-full w-full">
-        <div id="gradient-root" class="absolute z-0 inset-0 bg-gradient-to-b from-transparent via-gray-800 to-black from-5% via-50% to-95% h-full w-full opacity-40"></div>
-        <div id="root" class="z-10 relative flex flex-col h-full w-full ">
+        <div id="root" class="flex flex-col bg-gradient-to-b from-transparent/40 via-gray-800/40 to-black/40 from-5% via-50% to-95% h-full w-full ">
             <div id="topbar" class="h-8 md:h-12 lg:h-16 xl:h-18 w-full border-b-black border-b-4"></div>
-            <div id="content-1" class="flex flex-row h-3/5 bg-black border-2 w-full">
-                <div id="content-1-left-control" class="h-full w-60 bg-white">
+            <div id="content-1" class="flex flex-row h-3/5  border-2 w-full">
+                <div id="content-1-left-control" class="h-full w-60 ">
                     <div class="flex flex-col justify-center w-full h-full">
                         <h1 class="-rotate-90 text-center">clickable</h1>
                     </div>
                 </div>
-                <div class="flex flex-col justify-center h-full w-full bg-emerald-950">
+                <div class="flex flex-col justify-center h-full w-full ">
                     <h1 class="text-center text-white"> LOOKING FRESH 😎 </h1>
                 </div>
-                <div id="content-1-right-control" class="h-full w-60 bg-white">
+                <div id="content-1-right-control" class="h-full w-60 ">
                     <div class="flex flex-col justify-center w-full h-full">
                         <h1 class="rotate-90 text-center">clickable</h1>
                     </div>
                 </div>
             </div>
-            <div id="content-2" class="flex flex-row h-2/5 p-6 bg-gray-50 w-full">
-                <div id="content-2-left-control" class="bg-black w-20 h-full">
+            <div id="content-2" class="flex flex-row h-2/5 p-6  w-full">
+                <div id="content-2-left-control" class=" w-20 h-full">
                     <div class="flex flex-col justify-center w-full h-full">
                         <h1 class="-rotate-90 text-center text-white">clickable</h1>
                     </div>
@@ -40,8 +39,8 @@
                 ]}"
                     class="flex flex-row justify-between h-full w-full">
                     <template x-for="bean in beans">
-                        <div class="ml-4 mr-4 p-6 bg-black h-full w-full">
-                            <div class="bg-white h-full w-full rounded-3xl">
+                        <div class="ml-4 mr-4 p-6  h-full w-full">
+                            <div class=" h-full w-full rounded-3xl">
                                 <li class="flex flex-col justify-center h-full w-full">
                                     <h1 x-text="bean.title" class="text-center"></h1>
                                 </li>
@@ -50,7 +49,7 @@
                     </template>
 
                 </ul>
-                <div id="content-2-right-control" class="bg-black w-20 h-full">
+                <div id="content-2-right-control" class=" w-20 h-full">
                     <div class="flex flex-col justify-center w-full h-full">
                         <h1 class="rotate-90 text-center text-white">clickable</h1>
                     </div>
