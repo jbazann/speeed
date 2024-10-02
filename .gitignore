@@ -10,3 +10,4 @@
 ### Nodejs ###
 node_modules/
 /**/node/
+dist/
