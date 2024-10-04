@@ -3,26 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPEEED</title>
-    <script src="./src/js/index.js" type="module"></script>
+    <title>jbazann.dev</title>
     <link href="./src/css/index.css" rel="stylesheet">
+    <link rel="icon" href="/img/favicon.png" type="image/x-icon">
+    <script src="./src/js/index.js" type="module"></script>
+
+    <template id="content-1-button-hint">
+        <div class="relative h-32">
+            <div class="absolute size-full overflow-visible">
+                <div class="relative size-full overflow-visible">
+                    <div class="absolute h-3/5 w-max aspect-square rotate-[35deg] rounded-b-3xl border-sky-900 border-l-4"></div>
+                    <div class="absolute inset-y-2 h-3/5 w-max aspect-square rotate-[55deg] rounded-l-3xl border-sky-900 border-b-4"></div>
+                </div>
+            </div>
+            <div class="absolute inset-x-2 size-full overflow-visible">
+                <div class="relative size-full overflow-visible">
+                    <div class="absolute h-3/5 w-max aspect-square rotate-[35deg] rounded-b-3xl border-sky-900 border-l-4"></div>
+                    <div class="absolute inset-y-2 h-3/5 w-max aspect-square rotate-[55deg] rounded-l-3xl border-sky-900 border-b-4"></div>
+                </div>
+            </div>
+            <div class="absolute inset-x-4 size-full overflow-visible">
+                <div class="relative size-full overflow-visible">
+                    <div class="absolute h-3/5 w-max aspect-square rotate-[35deg] rounded-b-3xl border-sky-900 border-l-4"></div>
+                    <div class="absolute inset-y-2 h-3/5 w-max aspect-square rotate-[55deg] rounded-l-3xl border-sky-900 border-b-4"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
 </head>
-<body class="h-dvh w-dvw">
+<body class="h-dvh w-dvw" x-data="content1">
     <div id="sub-root" class="bg-gradient-to-br from-gray-950 via-sky-950 to-sky-900 from-45% via-85% to-95% h-full w-full">
-        <div id="root" class="flex flex-col bg-gradient-to-b from-transparent/40 via-gray-800/40 to-black/40 from-5% via-50% to-95% h-full w-full ">
+        <div id="root" class="flex flex-col bg-gradient-to-b from-transparent/40 via-gray-800/40 to-black/40 from-5% via-50% to-95% h-full w-full">
             <div id="topbar" class="h-8 md:h-12 lg:h-16 xl:h-18 w-full border-b-black border-b-4"></div>
-            <div id="content-1" class="flex flex-row h-3/5  border-2 w-full">
+            <div id="content-1" class="flex flex-row h-3/5 border-black border-2 bg-bottom bg-white bg-cover w-full"
+                 :style="{ 'background-image': 'url('+currentImage+')'}">
                 <div id="content-1-left-control" class="h-full w-60 ">
-                    <div class="flex flex-col justify-center w-full h-full">
-                        <h1 class="-rotate-90 text-center">clickable</h1>
+                    <div class="flex flex-col justify-center w-full h-full bg-black"
+                         x-html="getButtonHint().firstElementChild.innerHTML">
                     </div>
                 </div>
-                <div class="flex flex-col justify-center h-full w-full ">
-                    <h1 class="text-center text-white"> LOOKING FRESH 😎 </h1>
+                <div id="content-1-main" class="flex flex-col justify-start h-full w-full "
+                    x-data="overlay()">
+                    <img :class="overlayClass" :src="overlayImage" x-show="overlayShow">
                 </div>
                 <div id="content-1-right-control" class="h-full w-60 ">
-                    <div class="flex flex-col justify-center w-full h-full">
-                        <h1 class="rotate-90 text-center">clickable</h1>
+                    <div class="flex flex-col rotate-180 justify-center w-full h-full"
+                         x-html="getButtonHint().firstElementChild.innerHTML">
                     </div>
                 </div>
             </div>
