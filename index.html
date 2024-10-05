@@ -12,16 +12,16 @@
         <div class="size-full pl-14 flex flex-row" >
             <template x-for="img in imgs" x-data="{
                 imgs: [
-                    {src: '/img/arr_dark1.png', offset: '0'},
-                    {src: '/img/arr_light3.png', offset: '-0.5rem'},
-                    {src: '/img/arr1.png', offset: '-1rem'}
+                    {src: '/img/arr_sm_sfade3.png', offset: '0'},
+                    {src: '/img/arr_med_sfade3.png', offset: '-0.4rem'},
+                    {src: '/img/arr_big_sfade3.png', offset: '-1rem'}
                 ]
             }">
                 <img :src="img.src" alt="button icon"
                      x-init="$nextTick($dispatch('button_init',{src: $el}))"
                      @button_hover=""
                      @dragstart.prevent
-                     class="relative pl-1 drop-shadow-medium select-none"
+                     class="relative pl-1 drop-shadow-medium select-none opacity-50"
                      :style="{'left': img.offset, 'right': img.offset}">
             </template>
         </div>
@@ -30,12 +30,12 @@
 </head>
 <body class="h-dvh w-dvw" x-data="templateUtils">
     <div id="sub-root" class="bg-gradient-to-br from-gray-950 via-sky-950 to-sky-900 from-45% via-85% to-95% size-full">
-        <div id="root" class="flex flex-col bg-gradient-to-b from-transparent/40 via-gray-800/40 to-black/40 from-5% via-50% to-95% h-full w-full">
+        <div id="root" class="flex flex-col bg-gradient-to-b from-transparent via-gray-800/40 to-black/40 from-5% via-50% to-95% h-full w-full">
             <div id="topbar" class="h-8 md:h-12 lg:h-16 xl:h-18 w-full border-b-black border-b-4"></div>
             <div id="content-1" class="flex flex-row h-3/5 border-black border-2 bg-bottom bg-cover w-full"
                  x-data="content1"
                  :style="{ 'background-image': 'url('+currentImage+')'}">
-                <div id="content-1-left-control" class="h-full w-60"
+                <div id="content-1-left-control" class="h-full w-1/3 transition-opacity ease-in duration-500 bg-gradient-to-l from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
                     x-data="{btns: []}"
                     @click="currentImage = previousImage(); overlayData = overlay()"
                     @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
@@ -47,7 +47,7 @@
                 <div id="content-1-main" class="flex flex-col justify-start size-full select-none">
                     <img :class="overlayData.overlayClass" :src="overlayData.overlayImage" x-show="overlayData.overlayShow" @dragstart.prevent>
                 </div>
-                <div id="content-1-right-control" class="h-full w-60"
+                <div id="content-1-right-control" class="h-full w-1/3 transition-opacity ease-in duration-500 bg-gradient-to-r from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
                      x-data="{btns: []}"
                      @click="currentImage = nextImage(); overlayData = overlay()"
                      @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
