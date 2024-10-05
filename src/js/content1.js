@@ -52,6 +52,3 @@ function overlay() {
     }
     return data;
 }
-function getButtonHint() {
-    return document.getElementById('content-1-button-hint').content;
-}
