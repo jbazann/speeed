@@ -9,13 +9,13 @@ export default () => ({
 
 const images = [
     '/img/wip.webp',
-    '/img/wide1.webp',
-    '/img/wide2.webp',
-    '/img/wide3.webp',
-    '/img/wide4.webp',
-    '/img/wide5.webp',
-    '/img/wide6.webp',
-    '/img/wide7.webp',
+    '/img/wide1.jpg',
+    '/img/wide2.jpg',
+    '/img/wide3.jpg',
+    '/img/wide4.jpg',
+    '/img/wide5.jpg',
+    '/img/wide6.jpg',
+    '/img/wide7.jpg',
 ];
 
 const overlays = [
