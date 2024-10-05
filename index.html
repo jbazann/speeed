@@ -37,20 +37,19 @@
                  :style="{ 'background-image': 'url('+currentImage+')'}">
                 <div id="content-1-left-control" class="h-full w-60"
                     x-data="{btns: []}"
-                    @click="currentImage = previousImage()"
+                    @click="currentImage = previousImage(); overlayData = overlay()"
                     @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
                     @button_init.stop="btns.push($event.detail.src)">
                     <div class="flex flex-col justify-center size-full">
                         <div class="h-36" x-html="getTemplateHTMLById('arrow_btn1')"></div>
                     </div>
                 </div>
-                <div id="content-1-main" class="flex flex-col justify-start size-full select-none"
-                    x-data="overlay()">
-                    <img :class="overlayClass" :src="overlayImage" x-show="overlayShow" @dragstart.prevent>
+                <div id="content-1-main" class="flex flex-col justify-start size-full select-none">
+                    <img :class="overlayData.overlayClass" :src="overlayData.overlayImage" x-show="overlayData.overlayShow" @dragstart.prevent>
                 </div>
                 <div id="content-1-right-control" class="h-full w-60"
                      x-data="{btns: []}"
-                     @click="currentImage = nextImage()"
+                     @click="currentImage = nextImage(); overlayData = overlay()"
                      @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
                      @button_init.stop="btns.push($event.detail.src)">
                     <div class="flex flex-col rotate-180 justify-center size-full">
