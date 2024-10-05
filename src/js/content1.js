@@ -3,8 +3,7 @@ export default () => ({
     currentImage: currentImage,
     nextImage: nextImage,
     previousImage: previousImage,
-    overlay: overlay,
-    getButtonHint: getButtonHint
+    overlay: overlay
 })
 
 const images = [
@@ -21,7 +20,7 @@ const images = [
 const overlays = [
     {
         image: '/img/wip-sign.png',
-        class: 'size-3/5 self-center mt-2 drop-shadow-2xl'
+        class: 'size-3/5 self-center mt-2 drop-shadow-strong'
     }
 ]
 
@@ -29,18 +28,16 @@ let currentImage = images[0];
 let currentIndex = 0;
 
 function nextImage() {
-    if(images.length > currentIndex) {
-        currentIndex += 1;
-        currentImage = images[currentIndex];
-        return currentImage;
-    }
+    currentIndex = (currentIndex+1)%images.length;
+    currentImage = images[currentIndex];
+    console.log(images[currentIndex]);
+    return currentImage;
 }
 function previousImage() {
-    if(currentIndex > 0) {
-        currentIndex -= 1;
-        currentImage = images[currentIndex];
-        return currentImage;
-    }
+    currentIndex = (currentIndex+images.length-1)%images.length;
+    currentImage = images[currentIndex];
+
+    return currentImage;
 }
 function overlay() {
     const data = {overlayShow: false, overlayImage: '', overlayClass: ''};
