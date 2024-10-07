@@ -1,22 +1,14 @@
+import imagesContent1 from './imagesContent1';
 
 export default () => ({
-    currentImage: currentImage,
-    nextImage: nextImage,
-    previousImage: previousImage,
-    overlay: overlay,
-    overlayData: overlayData
+    currentImage,
+    nextImage,
+    previousImage,
+    overlay,
+    overlayData
 })
 
-const images = [
-    '/img/wip.webp',
-    '/img/wide1.jpg',
-    '/img/wide2.jpg',
-    '/img/wide3.jpg',
-    '/img/wide4.jpg',
-    '/img/wide5.jpg',
-    '/img/wide6.jpg',
-    '/img/wide7.jpg',
-];
+const images = imagesContent1().images;
 
 const overlays = [
     {

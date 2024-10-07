@@ -8,6 +8,12 @@
     <link rel="icon" href="/img/favicon.png" type="image/x-icon">
     <script src="./src/js/index.js" type="module"></script>
 
+    <!-- prefetch slider images once the page is fully loaded -->
+    <template x-data="imagesContent1" x-for="img in imgs"
+          @load.window="imgs = images">
+        <link rel="prefetch" :href="img">
+    </template>
+
     <template id="arrow_btn1">
         <div class="size-full pl-14 flex flex-row" >
             <template x-for="img in imgs" x-data="{
@@ -26,6 +32,8 @@
             </template>
         </div>
     </template>
+
+
 
 </head>
 <body class="h-dvh w-dvw" x-data="templateUtils">
