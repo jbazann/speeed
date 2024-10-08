@@ -37,60 +37,75 @@
 
 </head>
 <body class="h-dvh w-dvw" x-data="templateUtils">
-    <div id="sub-root" class="bg-gradient-to-br from-gray-950 via-sky-950 to-sky-900 from-45% via-85% to-95% size-full">
-        <div id="root" class="flex flex-col bg-gradient-to-b from-transparent via-gray-800/40 to-black/40 from-5% via-50% to-95% h-full w-full">
-            <div id="topbar" class="h-8 md:h-12 lg:h-16 xl:h-18 w-full border-b-black border-b-4"></div>
-            <div id="content-1" class="flex flex-row h-3/5 border-black border-2 bg-bottom bg-cover w-full"
-                 x-data="content1"
-                 :style="{ 'background-image': 'url('+currentImage+')'}">
-                <div id="content-1-left-control" class="h-full w-1/3 transition-opacity ease-in duration-500 bg-gradient-to-l from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
-                    x-data="{btns: []}"
-                    @click="currentImage = previousImage(); overlayData = overlay()"
-                    @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
-                    @button_init.stop="btns.push($event.detail.src)">
-                    <div class="flex flex-col justify-center size-full">
-                        <div class="h-36" x-html="getTemplateHTMLById('arrow_btn1')"></div>
-                    </div>
+    <div id="sub-root" class="bg-gradient-to-br from-cyan-950 via-cyan-900 to-cyan-800 from-45% via-85% to-95% size-full">
+        <div id="root" class="flex flex-col bg-gradient-to-b from-gray-950/50 via-gray-800/40 to-black/40 from-5% via-50% to-95% h-full w-full">
+            <div class="flex flex-col size-full bg-gradient-to-bl from-black/50 to-black/20">
+                <div id="topbar" class="h-8 md:h-12 lg:h-16 xl:h-18 w-full border-b-black border-b-2 bg-gradient-to-b from-cyan-950/20 to-cyan-800/15 from-40% to-80%">
+                    <div id="super-topbar" class="bg-gray-900/50 size-full"></div>
                 </div>
-                <div id="content-1-main" class="flex flex-col justify-start size-full select-none">
-                    <img :class="overlayData.overlayClass" :src="overlayData.overlayImage" x-show="overlayData.overlayShow" @dragstart.prevent>
-                </div>
-                <div id="content-1-right-control" class="h-full w-1/3 transition-opacity ease-in duration-500 bg-gradient-to-r from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
-                     x-data="{btns: []}"
-                     @click="currentImage = nextImage(); overlayData = overlay()"
-                     @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
-                     @button_init.stop="btns.push($event.detail.src)">
-                    <div class="flex flex-col rotate-180 justify-center size-full">
-                        <div class="h-36" x-html="getTemplateHTMLById('arrow_btn1')"></div>
-                    </div>
-                </div>
-            </div>
-            <div id="content-2" class="flex flex-row h-2/5 p-6 w-full">
-                <div id="content-2-left-control" class=" w-20 h-full">
-                    <div class="flex flex-col justify-center w-full h-full">
-                        <h1 class="-rotate-90 text-center text-white select-none">clickable</h1>
-                    </div>
-                </div>
-                <ul id="content-2-beans" x-data="{beans: [
-                    {title: 'bean1', desc: 'desc1'},
-                    {title: 'bean2', desc: 'desc2'},
-                    {title: 'bean3', desc: 'desc3'}
-                ]}"
-                    class="flex flex-row justify-between size-full">
-                    <template x-for="bean in beans">
-                        <div class="ml-4 mr-4 p-6 size-full">
-                            <div class=" h-full w-full drop-shadow-2xl bg-gray-400/5 rounded-3xl">
-                                <li class="flex flex-col justify-center h-full w-full">
-                                    <h1 x-text="bean.title" class="text-center select-none"></h1>
-                                </li>
-                            </div>
+                <div id="content-2" class="flex flex-row h-3/5 p-6 w-full">
+                    <div class="flex flex-col font-serif drop-shadow-strong text-center size-full">
+                        <h1 class="text-7xl font-thin">Joaquín Bazán</h1>
+                        <div class="flex flex-row justify-center">
+                            <h2 class="line-through self-end">Fullstack</h2>
+                            <h2 class="text-3xl italic">Backend Developer</h2>
+                            <h2 class="line-through self-end opacity-0">Fullstack</h2>
                         </div>
-                    </template>
+                    </div>
 
-                </ul>
-                <div id="content-2-right-control" class=" w-20 h-full">
-                    <div class="flex flex-col justify-center size-full">
-                        <h1 class="rotate-90 text-center text-white select-none">clickable</h1>
+
+
+                    <!--                <div id="content-2-left-control" class=" w-20 h-full">
+                                        <div class="flex flex-col justify-center w-full h-full">
+                                            <h1 class="-rotate-90 text-center text-white select-none">clickable</h1>
+                                        </div>
+                                    </div>
+                                    <ul id="content-2-beans" x-data="{beans: [
+                                        {title: 'bean1', desc: 'desc1'},
+                                        {title: 'bean2', desc: 'desc2'},
+                                        {title: 'bean3', desc: 'desc3'}
+                                    ]}"
+                                        class="flex flex-row justify-between size-full">
+                                        <template x-for="bean in beans">
+                                            <div class="ml-4 mr-4 p-6 size-full">
+                                                <div class=" h-full w-full drop-shadow-2xl bg-gray-400/5 rounded-3xl">
+                                                    <li class="flex flex-col justify-center h-full w-full">
+                                                        <h1 x-text="bean.title" class="text-center select-none"></h1>
+                                                    </li>
+                                                </div>
+                                            </div>
+                                        </template>
+
+                                    </ul>
+                                    <div id="content-2-right-control" class=" w-20 h-full">
+                                        <div class="flex flex-col justify-center size-full">
+                                            <h1 class="rotate-90 text-center text-white select-none">clickable</h1>
+                                        </div>
+                                    </div>-->
+                </div>
+                <div id="content-1" class="flex flex-row grow border-black border-2 bg-bottom bg-cover w-full"
+                     x-data="content1"
+                     :style="{ 'background-image': 'url('+currentImage+')'}">
+                    <div id="content-1-left-control" class="h-full w-1/3 transition-opacity ease-in duration-500 bg-gradient-to-l from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
+                         x-data="{btns: []}"
+                         @click="currentImage = previousImage(); overlayData = overlay()"
+                         @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
+                         @button_init.stop="btns.push($event.detail.src)">
+                        <div class="flex flex-col justify-center size-full">
+                            <div class="h-36" x-html="getTemplateHTMLById('arrow_btn1')"></div>
+                        </div>
+                    </div>
+                    <div id="content-1-main" class="flex flex-col justify-start size-full select-none">
+                        <img :class="overlayData.overlayClass" :src="overlayData.overlayImage" x-show="overlayData.overlayShow" @dragstart.prevent>
+                    </div>
+                    <div id="content-1-right-control" class="h-full w-1/3 transition-opacity ease-in duration-500 bg-gradient-to-r from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
+                         x-data="{btns: []}"
+                         @click="currentImage = nextImage(); overlayData = overlay()"
+                         @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
+                         @button_init.stop="btns.push($event.detail.src)">
+                        <div class="flex flex-col rotate-180 justify-center size-full">
+                            <div class="h-36" x-html="getTemplateHTMLById('arrow_btn1')"></div>
+                        </div>
                     </div>
                 </div>
             </div>

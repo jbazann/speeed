@@ -13,7 +13,7 @@ const images = imagesContent1().images;
 const overlays = [
     {
         image: '/img/wip-sign.png',
-        class: 'size-3/5 self-center mt-2 drop-shadow-strong'
+        class: 'size-2/5 self-center mt-2 drop-shadow-strong'
     }
 ]
 
