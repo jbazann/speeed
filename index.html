@@ -14,6 +14,16 @@
         <link rel="prefetch" :href="img">
     </template>
 
+    <template id="social_btns1">
+        <div class="contents">
+            <template x-for="btn in btns" x-data="socialButtons1">
+                <div class="contents group max-w-fit">
+                    <img :src="btn.src" :alt="btn.alt" class="p-2 opacity-70 group-hover:drop-shadow-strong group-hover:scale-105 group-hover:opacity-100">
+                </div>
+            </template>
+        </div>
+    </template>
+
     <template id="arrow_btn1">
         <div class="size-full pl-14 flex flex-row" >
             <template x-for="img in imgs" x-data="{
@@ -44,10 +54,10 @@
         <div id="topbar" class="relative h-12 w-full">
             <div id="topbar-bg-0" class="absolute inset-0 size-full bg-gradient-to-b from-cyan-950/20 to-cyan-800/15 from-40% to-80%"></div>
             <div id="topbar-bg-1" class="absolute inset-0 size-full bg-gray-900/50"></div>
-            <div id="super-topbar" class="relative flex flex-row justify-stretch size-full">
-                <img src="/img/favicon.png" alt="site logo" class="p-2 opacity-80 drop-shadow-medium">
-                <div id="topbar-content" class="size-full">
-
+            <div id="topbar-content" class="relative grid grid-cols-3 grid-rows-1 size-full">
+                <img src="/img/favicon.png" alt="site logo" class="p-2 opacity-80 h-full hover:scale-105 hover:drop-shadow-glow">
+                <div class="flex    flex-row justify-center text-slate-50 grow"
+                     x-html="getTemplateHTMLById('social_btns1')">
                 </div>
             </div>
         </div>
