@@ -46,7 +46,7 @@
 
 
 </head>
-<body class="h-dvh w-dvw" x-data="templateUtils">
+<body class="h-dvh w-dvw box-content" x-data="templateUtils">
     <div id="bg-0" class="absolute z-0 inset-0 bg-gradient-to-br from-cyan-950 via-cyan-900 to-cyan-800 from-45% via-85% to-95% size-full"></div>
     <div id="bg-1" class="absolute z-1 inset-0 bg-gradient-to-b from-gray-950/50 via-gray-800/40 to-black/40 from-5% via-50% to-95% size-full"></div>
     <div id="bg-2" class="absolute z-2 inset-0 bg-gradient-to-bl from-black/50 to-black/20 size-full"></div>
@@ -61,13 +61,13 @@
                 </div>
             </div>
         </div>
-        <div id="content-2" class="flex flex-row border-y-4 border-y-jblack h-fit w-full">
-            <div class="flex flex-col py-4 justify-between size-full">
-                <div class="font-serif drop-shadow-strong justify-between text-center p-4 w-full h-fit select-none">
+        <div id="content-2" class="relative flex flex-row border-y-4 border-y-jblack h-fit w-full">
+            <div class="flex flex-col py-4 justify-between w-full">
+                <div class="font-serif drop-shadow-strong justify-between text-center text-slate-50 p-4 w-full h-fit select-none">
                     <h1 class="text-7xl font-thin">Joaquín Bazán</h1>
                     <div class="grid grid-cols-[1fr,auto,1fr] justify-items-center">
-                        <h2 class="line-through justify-self-end self-end size-fit">Fullstack</h2>
-                        <h2 class="text-3xl italic self-center size-fit">Backend Developer</h2>
+                        <h2 class="line-through justify-self-end self-end size-fit pr-[0.3rem] opacity-90">Fullstack</h2>
+                        <h2 class="text-3xl italic self-center underline size-fit">Backend Developer</h2>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div id="content-1-main" class="flex flex-col justify-start size-full select-none">
-                <div class="w-full grow bg-gradient-to-t rounded-b-full from-15% to-95% from-transparent to-jblack/70"
+                <div class="w-full text-slate-50 grow bg-gradient-to-t rounded-b-full from-15% to-95% from-transparent to-jblack/70"
                     :style="{ 'clip-path': 'polygon(0 0, 100% 0, 90% 100%, 10% 100%)'}">
                     <div class="flex flex-row justify-center align-middle w-full h-fit">
                         <img src="/img/stop_police.png" alt="police emoji signaling to stop"
