@@ -1,10 +1,28 @@
+import sm from '/src/json/sm.json'
+import logos from '/src/json/sm_icons.json'
 
 export default () => ({
-    btns
+    btns: {
+        linkedin,
+        github,
+        twitter
+    }
 });
 
-const btns = [
-        {src: '/img/x-logo-white.png', alt: 'Twitter/X logo.', label: 'NOT YET'},
-        {src: '/img/github-mark-white.svg', alt: 'GitHub logo.', label: 'github.com/jbazann'},
-        {src: '/img/In-White-40@2x.png', alt: 'LinkedIn logo', label: 'linkedin.com/in/jbazann/'}
-    ];
+const linkedin = {
+    src: logos.white.linkedin,
+    alt: 'LinkedIn icon',
+    label: 'linkedin.com/in/jbazann/',
+    link: sm.linkedin
+}
+const github = {
+    src: logos.white.github,
+    alt: 'GitHub icon.',
+    label: 'github.com/jbazann',
+    link: sm.github,
+}
+const twitter = {
+    src: logos.white.x,
+    alt: 'Twitter/X icon',
+    label: 'Not yet.'
+}
