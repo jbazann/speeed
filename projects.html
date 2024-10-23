@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jbazann.dev</title>
+    <link href="/src/css/index.css" rel="stylesheet">
+    <link rel="icon" href="/img/favicon.png" type="image/x-icon">
+    <script src="/src/js/index.js" type="module"></script>
+
+    <link rel="preload" href="/">
+
+    <template id="social_btns1">
+        <div class="contents">
+            <template x-for="btn in Object.values(btns)" x-data="socialButtons1,utils">
+                <a class="contents group max-w-fit select-none"
+                   x-data="{hover_scale: 110}"
+                   target="_blank"
+                   :href="btn.link"
+                   @click="if(!btn.link) $event.preventDefault()">
+                    <img :src="btn.src" :alt="btn.alt"
+                         @dragstart.prevent
+                         class="p-2 transition-all ease-in-out duration-150 drop-shadow-strong"
+                         :class="(btn.link ? `opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-glow` : `opacity-25 group-hover:opacity-50`)">
+                </a>
+            </template>
+        </div>
+    </template>
+</head>
+<body class="h-dvh w-dvw box-content" x-data="utils">
+<div id="bg-0" class="absolute z-0 inset-0 bg-gradient-to-br from-cyan-950 via-cyan-900 to-cyan-800 from-45% via-85% to-95% h-dvh w-dvw"></div>
+<div id="bg-1" class="absolute z-1 inset-0 bg-gradient-to-b from-gray-950/50 via-gray-800/40 to-black/40 from-5% via-50% to-95% h-dvh w-dvw"></div>
+<div id="bg-2" class="absolute z-2 inset-0 bg-gradient-to-bl from-black/50 to-black/20 h-dvh w-dvw"></div>
+<div id="root" class="relative z-10 flex flex-col size-full">
+    <div id="topbar" class="relative h-12 w-full">
+        <div id="topbar-bg-0" class="absolute inset-0 size-full bg-gradient-to-b from-cyan-950/20 to-cyan-800/15 from-40% to-80%"></div>
+        <div id="topbar-bg-1" class="absolute inset-0 size-full bg-gray-900/50"></div>
+        <div id="topbar-content" class="relative grid grid-cols-3 grid-rows-1 size-full">
+            <a class="contents size-fit" href="/">
+                <img src="/img/favicon.png" alt="site logo"
+                     x-data="{hover_scale: 110}"
+                     @dragstart.prevent
+                     @click="hover_scale = 75; setTimeout(() => {hover_scale = 110},150)"
+                     :class="`hover:scale-${hover_scale}`"
+                     class="p-2 opacity-70 h-full transition-all duration-200 ease-in-out hover:opacity-100 hover:drop-shadow-glow">
+            </a>
+            <div class="flex    flex-row justify-center text-slate-50 grow"
+                 x-html="getTemplateHTMLById('social_btns1')">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -6,8 +6,10 @@
     <title>jbazann.dev</title>
     <link href="/src/css/index.css" rel="stylesheet">
     <link rel="icon" href="/img/favicon.png" type="image/x-icon">
-    <script src="./src/js/index.js" type="module"></script>
     <script src="/src/js/index.js" type="module"></script>
+
+    <link rel="preload" href="projects">
+    <link rel="preload" href="about">
 
     <!-- prefetch slider images once the page is fully loaded -->
     <template x-data="imagesContent1" x-for="img in imgs"
@@ -42,7 +44,6 @@
             }">
                 <img :src="img.src" alt="button icon"
                      x-init="$nextTick($dispatch('button_init',{src: $el}))"
-                     @button_hover=""
                      @dragstart.prevent
                      class="relative pl-1 drop-shadow-medium select-none opacity-50"
                      :style="{'left': img.offset, 'right': img.offset}">
@@ -104,7 +105,12 @@
                              class="size-10 m-2 align-middle">
                         <p class="text-3xl self-center font-extrabold">STOP!</p>
                     </div>
-                    <p class="text-2xl self-center text-center font-bold italic">You're here too soon. We're not ready.</p>
+                    <p class="text-2xl self-center text-center font-semibold">
+                        You're here too soon. We're not ready.<br>
+                        For now, you may read about my
+                        <a href="projects"><i><u>projects</u></i></a> and
+                        <a href="about"><i><u>about me</u></i></a>.
+                    </p>
                 </div>
                 <div class="h-1/3"></div>
             </div>
