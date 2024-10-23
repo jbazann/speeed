@@ -14,7 +14,6 @@
         <div class="contents">
             <template x-for="btn in Object.values(btns)" x-data="socialButtons1,utils">
                 <a class="contents group max-w-fit select-none"
-                   x-data="{hover_scale: 110}"
                    target="_blank"
                    :href="btn.link"
                    @click="if(!btn.link) $event.preventDefault()">
