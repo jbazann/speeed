@@ -51,22 +51,22 @@
                 <div class="contents" x-data="{projects: getProjects(), ppr: projectsPerRow(), displayProjects: true, displaySections: false, currentProject: {}}">
 
                     <div id="projects" x-show="displayProjects"
-                         class="grid items-center h-fit grow justify-items-center"
+                         class="grid items-start h-[60%] justify-items-center"
                          :class="`grid-cols-${Math.min(Object.keys(projects).length,ppr)} grid-rows-${Math.max(Math.round(Object.keys(projects).length/ppr),1)}`">
                     </div>
 
                     <template x-for="project of projects">
                         <template x-teleport="#projects">
-                            <div class="px-8 py-2 m-8 min-h-fit h-[70%] w-5/6 border-2 border-slate-50 rounded-2xl group transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-glow opacity-85 hover:opacity-100 hover:bg-gradient-to-b hover:to-slate-700/25 hover:from-slate-800/10"
+                            <div class="px-8 py-2 m-8 min-h-fit h-full w-5/6 border-2 border-slate-50 rounded-2xl group transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-glow opacity-85 hover:opacity-100 hover:bg-gradient-to-b hover:to-slate-700/25 hover:from-slate-800/10"
                                  @click="currentProject = project; displayProjects = false; displaySections = true;">
-                                <section class="grid size-full justify-items-center grid-rows-[30%,50%,20%] grid-cols-[1fr]">
+                                <section class="grid size-full justify-items-center grid-rows-[20%,60%,20%] grid-cols-[1fr]">
                                     <div class="relative flex flex-col justify-start">
                                         <h1 x-text="project.title" class="text-center size-fit self-center text-5xl font-serif font-bold"></h1>
                                         <div class="h-0 mt-2 w-4/5 border-b-2 border-b-slate-50 self-center"></div>
                                         <p x-text="project.desc" class="text-center font-serif size-fit italic"></p>
                                     </div>
                                     <div class="relative flex flex-col justify-center align-middle size-full self-center">
-                                        <img src="/img/wip-sign.png" class="p-4 aspect-video h-full">
+                                        <img :src="project.img" class="p-4 aspect-video h-full">
                                     </div>
                                     <div class="flex-col justify-end self-center h-fit grow">
                                         <ul class="flex flex-row flex-wrap justify-center">
