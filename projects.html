@@ -51,37 +51,40 @@
                 <div class="contents" x-data="{projects: getProjects(), ppr: projectsPerRow(), displayProjects: true, displaySections: false, currentProject: {}}">
 
                     <div id="projects" x-show="displayProjects"
-                         class="grid items-start h-[60%] justify-items-center"
-                         :class="`grid-cols-${Math.min(Object.keys(projects).length,ppr)} grid-rows-${Math.max(Math.round(Object.keys(projects).length/ppr),1)}`">
+                         class="grid grid-cols-2 grid-rows-1 items-center h-full w-full justify-items-center"
+                         >
+<!--                        :class="`grid-cols-${Math.min(Object.keys(projects).length,ppr)} grid-rows-${Math.max(Math.round(Object.keys(projects).length/ppr),1)}`"-->
                     </div>
 
                     <template x-for="project of projects">
                         <template x-teleport="#projects">
-                            <div class="px-8 py-2 m-8 min-h-fit h-full w-5/6 border-2 border-slate-50 rounded-2xl group transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-glow opacity-85 hover:opacity-100 hover:bg-gradient-to-b hover:to-slate-700/25 hover:from-slate-800/10"
-                                 @click="currentProject = project; displayProjects = false; displaySections = true;">
-                                <section class="grid size-full justify-items-center grid-rows-[20%,60%,20%] grid-cols-[1fr]">
-                                    <div class="relative flex flex-col justify-start">
-                                        <h1 x-text="project.title" class="text-center size-fit self-center text-5xl font-serif font-bold"></h1>
-                                        <div class="h-0 mt-2 w-4/5 border-b-2 border-b-slate-50 self-center"></div>
-                                        <p x-text="project.desc" class="text-center font-serif size-fit italic"></p>
-                                    </div>
-                                    <div class="relative flex flex-col justify-center align-middle size-full self-center">
-                                        <img :src="project.img" class="p-4 aspect-video h-full">
-                                    </div>
-                                    <div class="flex-col justify-end self-center h-fit grow">
-                                        <ul class="flex flex-row flex-wrap justify-center">
-                                            <template x-for="(item, index) in project.stack">
-                                                <li class="flex flex-row max-h-[5rem] align-middle">
-                                                    <p x-text="item" class="self-center px-2"></p>
-                                                    <p class="self-center font-mono font-bold" x-show="(index+1) < project.stack.length">—</p>
-                                                    <!--                                                <div class="flex w-0 h-full flex-col justify-center" x-show="(index+1) < project.stack.length">-->
-                                                    <!--                                                    <div class="h-2/5 w-0 box-content border-r-2 border-slate-50"></div>-->
-                                                    <!--                                                </div>-->
-                                                </li>
-                                            </template>
-                                        </ul>
-                                    </div>
-                                </section>
+                            <div class="h-[60dvh] w-[45dvw] flex flex-row justify-center align-middle">
+                                <div class="size-full border-2 border-slate-50 rounded-3xl group transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-glow opacity-85 hover:opacity-100 hover:bg-gradient-to-b hover:to-slate-700/25 hover:from-slate-800/10"
+                                     @click="currentProject = project; displayProjects = false; displaySections = true;">
+                                    <section class="grid size-full justify-items-center grid-rows-[19%,65%,16%] grid-cols-[100%]">
+                                        <div class="relative flex flex-col justify-start">
+                                            <h1 x-text="project.title" class="text-center size-fit self-center text-5xl font-serif font-bold"></h1>
+                                            <div class="h-0 mt-2 w-4/5 border-b-2 border-b-slate-50 self-center"></div>
+                                            <p x-text="project.desc" class="text-center font-serif size-fit italic"></p>
+                                        </div>
+                                        <div class="relative flex flex-col justify-center align-middle size-full self-center">
+                                            <img :src="project.img" class=" py-4 px-10 aspect-video h-full">
+                                        </div>
+                                        <div class="flex-col justify-end overflow-hidden self-center h-full grow">
+                                            <ul class="flex flex-row flex-wrap justify-center">
+                                                <template x-for="(item, index) in project.stack">
+                                                    <li class="flex flex-row max-h-[5rem] align-middle">
+                                                        <p x-text="item" class="self-center px-2"></p>
+                                                        <p class="self-center font-mono font-bold" x-show="(index+1) < project.stack.length">—</p>
+                                                        <!--                                                <div class="flex w-0 h-full flex-col justify-center" x-show="(index+1) < project.stack.length">-->
+                                                        <!--                                                    <div class="h-2/5 w-0 box-content border-r-2 border-slate-50"></div>-->
+                                                        <!--                                                </div>-->
+                                                    </li>
+                                                </template>
+                                            </ul>
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
                         </template>
                     </template>
