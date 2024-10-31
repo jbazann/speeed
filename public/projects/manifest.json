@@ -1,0 +1,26 @@
+{
+  "tpdan": {
+    "key": "tpdan",
+    "title": "TPDAN",
+    "desc": "The TPDAN Project. A marvel of science and engineering.",
+    "stack": ["Java", "Spring Boot", "Maven", "Kubernetes", "RabbitMQ", "Prometheus", "Grafana", "Eureka"],
+    "sections": [
+      {
+        "key": "test",
+        "path": "/projects/tpdan/test.html"
+      }
+    ]
+  },
+  "speeed": {
+    "key": "speeed",
+    "title": "SPEEED",
+    "desc": "The SPEEED Project. A marvel of science and engineering.",
+    "stack": ["Cloudflare Pages", "Alpinejs", "TailwindCSS", "Vite"],
+    "sections": [
+      {
+        "key": "test",
+        "path": "/projects/tpdan/test.html"
+      }
+    ]
+  }
+}

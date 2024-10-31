@@ -9,5 +9,10 @@ export default defineConfig({
                 projects: '/projects.html',
             }
         }
-    }
+    },
+    esbuild: {
+        supported: {
+            'top-level-await': true
+        },
+    },
 })
