@@ -54,17 +54,22 @@
 
 
 </head>
-<body class="h-dvh w-dvw box-content" x-data="utils">
-    <div id="bg-0" class="absolute z-0 inset-0 bg-gradient-to-br from-cyan-950 via-cyan-900 to-cyan-800 from-45% via-85% to-95% h-dvh w-dvw"></div>
-    <div id="bg-1" class="absolute z-1 inset-0 bg-gradient-to-b from-gray-950/50 via-gray-800/40 to-black/40 from-5% via-50% to-95% h-dvh w-dvw"></div>
-    <div id="bg-2" class="absolute z-2 inset-0 bg-gradient-to-bl from-black/50 to-black/20 h-dvh w-dvw"></div>
+<body class="h-dvh w-dvw box-content" x-data="global">
+    <!-- background -->
+    <div id="bg-0" class="fixed z-0 bg-gradient-to-br from-cyan-950 via-cyan-900 to-cyan-800 from-45% via-85% to-95% size-full"></div>
+    <div id="bg-1" class="fixed z-1 bg-gradient-to-b from-gray-950/50 via-gray-800/40 to-black/40 from-5% via-50% to-95% size-full"></div>
+    <div id="bg-2" class="fixed z-2 bg-gradient-to-bl from-black/50 to-black/20 size-full"></div>
+
+    <!-- display -->
     <div x-cloak class="contents">
         <div id="root" class="relative z-10 flex flex-col size-full" x-cloak>
+
             <div id="topbar" class="relative h-12 w-full">
                 <div id="topbar-bg-0" class="absolute inset-0 size-full bg-gradient-to-b from-cyan-950/20 to-cyan-800/15 from-40% to-80%"></div>
                 <div id="topbar-bg-1" class="absolute inset-0 size-full bg-gray-900/50"></div>
                 <div id="topbar-content" class="relative grid grid-cols-3 grid-rows-1 size-full">
-                    <a class="contents size-fit" href="/">
+                    <a class="contents size-fit"
+                       @click="pages = navigate('index')">
                         <img src="/img/favicon.png" alt="site logo"
                              @dragstart.prevent
                              class="p-2 opacity-70 h-full transition-all duration-200 ease-in-out hover:opacity-100 hover:scale-110 hover:drop-shadow-glow">
@@ -74,7 +79,27 @@
                     </div>
                 </div>
             </div>
-            <div id="content-2" class="relative flex flex-row border-y-4 border-y-jblack h-fit w-full">
+
+            <div id="content-root" class="contents">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- render -->
+    <div class="size-0 overflow-hidden">
+
+        <!-- index -->
+        <template x-teleport="#content-root">
+            <div class="contents" x-show="pages.index">
+                <div id="index-intro" class="contents"></div>
+                <div id="index-slider" class="contents"></div>
+            </div>
+        </template>
+
+        <!-- index-intro -->
+        <template x-teleport="#index-intro">
+            <div class="relative flex flex-row border-y-4 border-y-jblack h-fit w-full">
                 <div class="flex flex-col py-4 justify-between w-full">
                     <div class="font-serif drop-shadow-strong justify-between text-center text-slate-50 p-4 w-full h-fit select-none">
                         <h1 class="text-7xl font-thin">Joaquín Bazán</h1>
@@ -85,47 +110,121 @@
                     </div>
                 </div>
             </div>
-            <div id="content-1" class="flex flex-row grow bg-bottom bg-cover w-full"
-                 x-data="content1"
-                 :style="{ 'background-image': 'url('+currentImage+')'}">
-                <div id="content-1-left-control" class="h-full w-1/5 transition-opacity ease-in duration-500 bg-gradient-to-l from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
-                     x-data="{btns: []}"
-                     @click="currentImage = previousImage()"
-                     @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
-                     @button_init.stop="btns.push($event.detail.src)">
-                    <div class="flex flex-col justify-center size-full">
-                        <div class="h-36" x-html="getTemplateHTMLById('arrow_btn1')"></div>
-                    </div>
-                </div>
-                <div id="content-1-main" class="flex flex-col justify-start grow select-none">
-                    <div class="text-slate-50 grow bg-gradient-to-t rounded-b-full from-15% to-95% from-transparent to-jblack/70"
+        </template>
+
+        <!-- index-slider -->
+       <template x-teleport="#index-slider">
+           <div class="flex flex-row grow bg-bottom bg-cover w-full"
+                x-data="content1"
+                :style="{ 'background-image': 'url('+currentImage+')'}">
+               <div id="content-1-left-control" class="h-full w-1/5 cursor-pointer transition-opacity ease-in duration-500 bg-gradient-to-l from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
+                    x-data="{btns: []}"
+                    @click="currentImage = previousImage()"
+                    @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
+                    @button_init.stop="btns.push($event.detail.src)">
+                   <div class="flex flex-col justify-center size-full">
+                       <div class="h-36" x-html="getTemplateHTMLById('arrow_btn1')"></div>
+                   </div>
+               </div>
+               <div id="content-1-main" class="flex flex-col justify-start grow select-none">
+                   <div class="text-slate-50 grow bg-gradient-to-t rounded-b-full from-15% to-95% from-transparent to-jblack/70"
                         :style="{ 'clip-path': 'polygon(0 0, 100% 0, 90% 100%, 10% 100%)'}">
-                        <div class="flex flex-row justify-center align-middle w-full h-fit">
-                            <img src="/img/stop_police.png" alt="police emoji signaling to stop"
-                                 @dragstart.prevent
-                                 class="size-10 m-2 align-middle">
-                            <p class="text-3xl self-center font-extrabold">STOP!</p>
-                        </div>
-                        <p class="text-2xl self-center text-center font-semibold">
-                            You're here too soon. We're not ready.<br>
-                            For now, you may read about my
-                            <a href="projects"><i><u>projects</u></i></a> and
-                            <a href="about"><i><u>about me</u></i></a>.
-                        </p>
+                       <div class="flex flex-row justify-center align-middle w-full h-fit">
+                           <img src="/img/stop_police.png" alt="police emoji signaling to stop"
+                                @dragstart.prevent
+                                class="size-10 m-2 align-middle">
+                           <p class="text-3xl self-center font-extrabold">STOP!</p>
+                       </div>
+                       <p class="text-2xl self-center text-center font-semibold">
+                           You're here too soon. We're not ready.<br>
+                           For now, you may read about my
+                           <a class="hover:scale-105 hover:drop-shadow-glow cursor-pointer"
+                              @click="pages = navigate('projects')">
+                               <i><u>projects</u></i></a>
+                           and
+                           <a class="hover:scale-105 hover:drop-shadow-glow cursor-pointer"
+                              @click="pages = navigate('about')">
+                               <i><u>about me</u></i></a>
+                           .
+                       </p>
+                   </div>
+                   <div class="h-1/3"></div>
+               </div>
+               <div id="content-1-right-control" class="h-full w-1/5 cursor-pointer transition-opacity ease-in duration-500 bg-gradient-to-r from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
+                    x-data="{btns: []}"
+                    @click="currentImage = nextImage()"
+                    @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
+                    @button_init.stop="btns.push($event.detail.src)">
+                   <div class="flex flex-col rotate-180 justify-center size-full">
+                       <div class="h-36" x-html="getTemplateHTMLById('arrow_btn1')"></div>
+                   </div>
+               </div>
+           </div>
+       </template>
+
+        <!-- projects -->
+        <template x-teleport="#content-root">
+            <div class="contents" x-show="pages.projects">
+                <div id="projects-xd" class="contents"></div>
+            </div>
+        </template>
+
+        <!-- projects-xd -->
+        <template x-teleport="#projects-xd">
+            <div class="grow flex flex-row text-slate-50" x-data="projectsUtils">
+                <div class="contents" x-data="{projects: getProjects(), ppr: projectsPerRow(), displayProjects: true, displaySections: false, currentProject: {}}">
+
+                    <div id="projects" x-show="displayProjects"
+                         class="grid grid-cols-2 grid-rows-1 items-center h-full w-full justify-items-center">
                     </div>
-                    <div class="h-1/3"></div>
-                </div>
-                <div id="content-1-right-control" class="h-full w-1/5 transition-opacity ease-in duration-500 bg-gradient-to-r from-transparent via-black/50 to-black/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
-                     x-data="{btns: []}"
-                     @click="currentImage = nextImage()"
-                     @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
-                     @button_init.stop="btns.push($event.detail.src)">
-                    <div class="flex flex-col rotate-180 justify-center size-full">
-                        <div class="h-36" x-html="getTemplateHTMLById('arrow_btn1')"></div>
+
+                    <template x-for="project of projects">
+                        <template x-teleport="#projects">
+                            <div class="h-[60dvh] w-[45dvw] flex flex-row justify-center align-middle">
+                                <div class="size-full border-2 border-slate-50 rounded-3xl group transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-glow opacity-85 hover:opacity-100 hover:bg-gradient-to-b hover:to-slate-700/25 hover:from-slate-800/10"
+                                     @click="currentProject = project; displayProjects = false; displaySections = true;">
+                                    <section class="grid size-full justify-items-center grid-rows-[19%,65%,16%] grid-cols-[100%]">
+                                        <div class="relative flex flex-col justify-start">
+                                            <h1 x-text="project.title" class="text-center size-fit self-center text-5xl font-serif font-bold"></h1>
+                                            <div class="h-0 mt-2 w-4/5 border-b-2 border-b-slate-50 self-center"></div>
+                                            <p x-text="project.desc" class="text-center font-serif size-fit italic"></p>
+                                        </div>
+                                        <div class="relative flex flex-col justify-center align-middle size-full self-center">
+                                            <img :src="project.img" class=" py-4 px-10 aspect-video h-full">
+                                        </div>
+                                        <div class="flex-col justify-end overflow-hidden self-center h-full grow">
+                                            <ul class="flex flex-row flex-wrap justify-center">
+                                                <template x-for="(item, index) in project.stack">
+                                                    <li class="flex flex-row max-h-[5rem] align-middle">
+                                                        <p x-text="item" class="self-center px-2"></p>
+                                                        <p class="self-center font-mono font-bold" x-show="(index+1) < project.stack.length">—</p>
+                                                        <!--                                                <div class="flex w-0 h-full flex-col justify-center" x-show="(index+1) < project.stack.length">-->
+                                                        <!--                                                    <div class="h-2/5 w-0 box-content border-r-2 border-slate-50"></div>-->
+                                                        <!--                                                </div>-->
+                                                    </li>
+                                                </template>
+                                            </ul>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+
+                    <div id="sections" class="contents" x-show="displaySections">
+                        <template x-if="currentProject.key">
+                            <template x-data="getSections(currentProject.key)" x-for="section in sections">
+                                <section class="h-fit grow">
+                                    <h1>Title test</h1>
+                                    <div x-html="section"></div>
+                                </section>
+                            </template>
+                        </template>
                     </div>
                 </div>
             </div>
-        </div>
+        </template>
     </div>
+
 </body>
 </html>
