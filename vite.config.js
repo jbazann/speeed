@@ -4,9 +4,7 @@ export default defineConfig({
     build: {
         rollupOptions: {
             input: {
-                main: '/index.html',
-                about: '/about.html',
-                projects: '/projects.html',
+                main: '/index.html'
             }
         }
     },
