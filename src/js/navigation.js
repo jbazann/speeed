@@ -11,10 +11,15 @@ let data = {
         about: false,
         tpdan: false,
         speeed: false
-    }
+    },
+    refresh
 }
 
 initialize();
+
+function refresh() {
+    location.reload()
+}
 
 function setPage(to) {
     data = navigate(to);
@@ -25,7 +30,6 @@ function navigate(next) {
         data.pages[page] = false;
     }
     data.pages[next] = true;
-    console.log('pushstate '+next)
     window.history.pushState({}, '', pathFor(next));
     return {...data}; // must be a new object because Alpine sucks (no deep-check for changes when re-assigning the same value)
 }
