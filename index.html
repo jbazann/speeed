@@ -136,11 +136,11 @@
                            You're here too soon. We're not ready.<br>
                            For now, you may read about my
                            <a class="hover:scale-105 hover:drop-shadow-glow cursor-pointer"
-                              href="/projects">
+                              @click="data = navigate('projects')">
                                <i><u>projects</u></i></a>
                            and
                            <a class="hover:scale-105 hover:drop-shadow-glow cursor-pointer"
-                              href="/about">
+                              @click="data = navigate('about')">
                                <i><u>about me</u></i></a>
                            .
                        </p>
@@ -173,7 +173,7 @@
                 <div class="contents text-slate-50" x-data="{projects: getProjects()}">
                     <div class="grid grid-cols-2 grid-rows-1 items-center justify-items-center size-full">
                         <template x-for="project of projects">
-                            <a :href="project.path">
+                            <a @click="data = navigate(project.key)">
                                 <div class="p-4 box-content border-2 border-slate-50 rounded-3xl group transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-glow opacity-85 hover:opacity-100 hover:bg-gradient-to-b hover:to-slate-700/25 hover:from-slate-800/10">
                                     <section class="grid h-[69dvh] w-[45dvw] justify-items-center grid-rows-[19%,69%,12%] grid-cols-[100%]">
                                         <div class="flex flex-col justify-start">
