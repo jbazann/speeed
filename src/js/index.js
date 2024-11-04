@@ -14,7 +14,7 @@ const global = {
     ...utils(),
     ...navigation()
 }
-
+console.log(global)
 window.Alpine = Alpine;
 
 Alpine.data('global',() => (global));

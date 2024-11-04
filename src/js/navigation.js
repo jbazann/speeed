@@ -1,18 +1,33 @@
-export default () => ({pages,navigate});
+import projects from "./projectsUtils";
 
-let pages = {
-    index: true,
-    projects: false,
-    about: false
+export default () => ({data, navigate});
+
+let data = {
+    project: {},
+    hasProject: false,
+    pages: {
+        index: true,
+        projects: false,
+        about: false,
+        tpdan: false,
+        speeed: false
+    }
+}
+
+initialize();
+
+function setPage(to) {
+    data = navigate(to);
 }
 
 function navigate(next) {
-    for(const page in pages) {
-        pages[page] = false;
+    for(const page in data.pages) {
+        data.pages[page] = false;
     }
-    pages[next] = true;
-    window.history.pushState({}, '', pathFor(next))
-    return {...pages}; // must be a new object because Alpine sucks
+    data.pages[next] = true;
+    console.log('pushstate '+next)
+    window.history.pushState({}, '', pathFor(next));
+    return {...data}; // must be a new object because Alpine sucks (no deep-check for changes when re-assigning the same value)
 }
 
 function initialize() {
@@ -24,39 +39,59 @@ function initialize() {
     handle();
 }
 
-function setPage(to) {
-    pages = navigate(to);
-}
-
 function firstLevelPath(str) {
     switch(str) {
         case 'proyectos':
         case 'projects':
-            return orGoHome(wrap(setPage,'projects'));
+            return handler(projectsLevelPath,'/');
         case 'acerca':
         case 'about':
-            return orGoHome(wrap(setPage,'about'));
+            return terminalHandler(handler(setPage,'about'));
         default:
-            return orGoHome(wrap(setPage,'index'));
+            return terminalHandler(home);
     }
 }
 
-function wrap(func, withParam) {
-    return () => func(withParam);
+function projectsLevelPath(str) {
+    let sanitized = '';
+    switch (str) {
+        case '/':
+            setPage('projects');
+            return terminalHandler(handler(setPage,'projects'));// this would never be called but wth
+        case 'tpdan':
+            sanitized = 'tpdan';
+            break;
+        case 'speeed':
+            sanitized = 'speeed';
+            break;
+        default:
+            return terminalHandler(home)
+    }
+    if (sanitized !== '/') {
+        const _projects = projects().getProjects();
+        data.project = _projects[sanitized];
+        data.hasProject = data.project !== undefined;
+    }
+    return terminalHandler(handler(setPage, sanitized));
+}
+
+function handler(func, withParam) {
+    return (param = withParam) => func(param);
 }
 
 function home() {
-    pages = navigate()
+    data.pages = navigate()
 }
 
-function orGoHome(func) {
+function terminalHandler(func) {
     const forbiddenParam = 'secretSpicyStringXD'
-    const sanitized = ((typeof func === 'function') ? func : home);
-    return (entry = forbiddenParam) => {
-        if (entry === forbiddenParam) {
-            sanitized();
+    const callOnEmptyParam = ((typeof func === 'function') ? func : home);
+    return (param = forbiddenParam) => {
+        if (param === forbiddenParam) {
+            callOnEmptyParam();
         } else {
-            return orGoHome(home);
+            // if this function is called with a parameter, the handle loop continued unexpectedly. This contains its behavior
+            return terminalHandler(home);
         }
     }
 }
@@ -67,9 +102,11 @@ function pathFor(page) {
             return '/projects';
         case 'about':
             return '/about';
+        case 'tpdan':
+            return '/projects/tpdan'
+        case 'speeed':
+            return '/projects/speeed'
         default:
             return '/';
     }
 }
-
-initialize();

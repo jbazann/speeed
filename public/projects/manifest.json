@@ -5,6 +5,7 @@
     "desc": "The TPDAN Project. A marvel of science and engineering.",
     "stack": ["Java", "Spring Boot", "Maven", "Kubernetes", "RabbitMQ", "Prometheus", "Grafana", "Eureka"],
     "img": "/img/wip-sign.png",
+    "path": "/projects/tpdan",
     "sections": [
       {
         "key": "test",
@@ -18,6 +19,7 @@
     "desc": "The SPEEED Project. A marvel of science and engineering.",
     "stack": ["Cloudflare Pages", "Alpinejs", "TailwindCSS", "Vite"],
     "img": "/img/wizard.png",
+    "path": "/projects/speeed",
     "sections": [
       {
         "key": "test",
