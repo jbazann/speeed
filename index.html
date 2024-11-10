@@ -48,10 +48,8 @@
         </div>
     </template>
 
-
-
 </head>
-<body class="h-dvh w-dvw box-content" x-data="global">
+<body class="h-dvh w-full box-content overflow-auto" x-data="global">
     <!-- background -->
     <div id="bg-0" class="fixed z-0 bg-gradient-to-br from-cyan-950 via-cyan-900 to-cyan-800 from-45% via-85% to-95% size-full"></div>
     <div id="bg-1" class="fixed z-1 bg-gradient-to-b from-gray-950/50 via-gray-800/40 to-black/40 from-5% via-50% to-95% size-full"></div>
@@ -61,7 +59,7 @@
     <div x-cloak class="contents">
         <div id="root" class="relative z-10 flex flex-col size-full" x-cloak>
 
-            <div id="topbar" class="relative h-12 w-full">
+            <div id="topbar" class="relative h-12 border-b-4 border-y-jblack w-full">
                 <div id="topbar-bg-0" class="absolute inset-0 size-full bg-gradient-to-b from-cyan-950/20 to-cyan-800/15 from-40% to-80%"></div>
                 <div id="topbar-bg-1" class="absolute inset-0 size-full bg-gray-900/50"></div>
                 <div id="topbar-content" class="relative grid grid-cols-3 grid-rows-1 size-full">
@@ -96,7 +94,7 @@
 
         <!-- index-intro -->
         <template x-teleport="#index-intro">
-            <div class="relative flex flex-row border-y-4 border-y-jblack h-fit w-full">
+            <div class="relative flex flex-row border-b-4 border-y-jblack h-fit w-full">
                 <div class="flex flex-col py-4 justify-between w-full">
                     <div class="font-serif drop-shadow-strong justify-between text-center text-slate-50 p-4 w-full h-fit select-none">
                         <h1 class="text-7xl font-thin">Joaquín Bazán</h1>
@@ -204,12 +202,261 @@
         </template>
 
         <template x-teleport="#projects-sections" x-data="projectsUtils">
-            <template x-data="sections = (data.hasProject ? getSections(data.project.key).sections : [])"
-                      x-for="key of Object.keys(sections)">
-                <section class="h-fit grow m-8">
-                    <h1 :text="key">Title test</h1>
-                    <div x-html="sections[key]"></div>
-                </section>
+            <template x-if="data.pages.tpdan">
+                <div class="contents text-[1.2rem]">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                        <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
+                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                Overview
+                            </h1>
+                            <div class="flex flex-row justify-center text-slate-50/95 text-center drop-shadow-medium w-full p-2">
+                                <div class="flex flex-col justify-between m-4">
+                                    <p class="pb-12 italic">The TPDAN Project. A marvel of science and engineering.</p>
+                                    <p class="py-4">
+                                        This is the final project of a four-month class
+                                        that covered various aspects of design in distributed
+                                        applications; <br> the main goal of this class was to
+                                        achieve a general understanding of a set of middleware tools
+                                        and a full stack of technologies.
+                                    </p>
+                                    <hr>
+                                    <p class="py-4 self-center max-w-[70rem]">
+                                        I decided to take the project beyond
+                                        what I was asked to do, and build
+                                        a long-term playground to refine my knowledge and skills in all the
+                                        areas of system design and implementation a micro-services architecture
+                                        may encompass.
+                                    </p>
+                                    <hr>
+                                    <p class="pt-8 self-center max-w-[40rem]">
+                                        This is a project in development. <br>I expect to publish Kubernetes resources (possibly as a Helm chart)
+                                        and Docker images on this page toward the end of November 2024.
+                                        <br>
+                                        In the meantime,
+                                        <a href="https://github.com/jbazann/TPDAN"
+                                           class="italic drop-shadow-glow underline">
+                                            here's the latest source code</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="flex flex-row justify-start h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                        <div class="flex flex-col font-mono h-fit grow">
+                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                Requirements
+                            </h1>
+                            <div class="flex flex-col xl:flex-row text-slate-50/95 drop-shadow-medium justify-stretch w-full p-2">
+                                <div class="flex flex-col justify-between m-4">
+                                    <hr>
+                                    <p class="py-4">
+                                        I was given a general architecture, with a minimal set of
+                                        functional requirements, and conditions about the degree
+                                        of implementation for features such as logging, testing,
+                                        and metrics collection.
+                                    </p>
+                                    <hr>
+                                    <p class="py-4">
+                                        I was also given a base repository, with most of the setup
+                                        already done on Docker Compose. But since we had freedom
+                                        to add more tools at our discretion, I decided to start
+                                        from scratch using Kubernetes.
+                                        <br>
+                                        <br>
+                                        Everything you will find in
+                                        the project repository, except only for the frontend
+                                        server (which I will replace eventually), is built and
+                                        managed by me. This may imply
+                                        <em class="drop-shadow-glow">a lot of questionable decisions.</em>
+                                    </p>
+                                    <hr>
+                                    <p class="py-4">
+                                        More specifically, I had constraints regarding synchronicity
+                                        of some operations, the specific deployables to be designed,
+                                        and the responsibilities of each of them. Among the things that
+                                        were up to me are: the internal structure of each service, the
+                                        specifics of API design, the routing strategy for internal synchronous
+                                        requests, and the integration of any additional
+                                        technologies I decided to use.
+                                    </p>
+                                    <hr>
+                                </div>
+                                <img src="/img/tpdan-macro.jpg" class="w-2/5 m-4 self-center aspect-auto" alt="">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="flex flex-row justify-start h-fit w-full bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                        <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
+                            <div class="flex flex-row justify-center text-slate-50/95 text-start drop-shadow-medium w-full p-2">
+                                <div class="flex flex-col justify-between m-4">
+                                    <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                        Goals
+                                    </h1>
+                                    <p class="pt-4 pb-1">
+                                        First I'd like to actually pass the class, so by late November/early December
+                                        I will make a first release with:
+                                    </p>
+
+                                    <ul class="list-disc pl-12">
+                                        <li>Full functionality available through the borrowed UI.</li>
+                                        <li>Partial test coverage.</li>
+                                        <li>Partial integration with logging and metrics.</li>
+                                        <li>Simulated network isolation with Kubernetes' NetworkPolicy.</li>
+                                        <li>Hosted native images for suitable deployable units.</li>
+                                    </ul>
+                                    <br>
+                                    <p class="pt-4 pb-1">
+                                        Then, by the end of January:
+                                    </p>
+                                    <ul class="list-disc pl-12">
+                                        <li>'Full' test coverage.</li>
+                                        <li>Full integration with logging and metrics.</li>
+                                        <li>Possibly a serverless deployment (depending on feasibility with free plans).</li>
+                                        <li>Some form 'User' authentication and session tracking.</li>
+                                        <li>Replaced UI.</li>
+                                    </ul>
+                                    <p class="pt-4 pb-1">
+                                        My long term plans for this project are to use it to learn Golang, and explore
+                                        stress-testing strategies, advanced patterns and algorithms relevant to
+                                        large-scale applications.
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                        <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
+                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                Maven
+                            </h1>
+                            <div class="flex flex-row justify-center text-slate-50/95 text-center drop-shadow-medium w-full p-2">
+                                <div class="flex flex-col justify-between m-4">
+                                    <p class="py-4">
+                                        When I strated working on this, I wanted to be able to interact with all my tools through Maven,
+                                        so the first thing I did was learn how to aggregate modules with different
+                                        lifecycles and dependencies, and find
+                                        plugins like Eclipse's
+                                        <a href="https://eclipse.dev/jkube/docs/kubernetes-maven-plugin/#introduction"
+                                           class="italic drop-shadow-glow underline">
+                                            kubernetes-maven-plugin</a> to wrap kubectl
+                                        commands and other actions in plugin executions.
+                                    </p>
+                                    <hr>
+                                    <p class="py-4 self-center max-w-[60rem]">
+                                        While I did achieve these goals, I had to minimize the time I spent on this, and
+                                        I am not particularly happy with the scalability and maintainability of the result.
+                                        <br>
+                                        I will expand this section with more details and code snippets when I have a first release ready.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="flex flex-row justify-end h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                        <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
+                            <div class="flex flex-row justify-center text-slate-50/95 text-end drop-shadow-medium w-full p-2">
+                                <div class="flex flex-col justify-between m-4">
+                                    <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                        Spring Boot
+                                    </h1>
+                                    <p class="py-4 ">
+                                        This is my third project using Spring Boot, and the first one I will finish.
+                                        <br>
+                                        I am finally starting to understand Spring's application context and
+                                        dependency injection, and Spring Boot's ecosystem;
+                                        my use of these tools to produce working code is now an actual
+                                        workflow rather than an accident.
+                                    </p>
+                                    <hr>
+                                    <p class="py-4">
+                                        I will expand this section with more details and code snippets when I have a first release ready.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                        <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
+                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                Databases
+                            </h1>
+                            <div class="flex flex-row justify-center text-slate-50/95 text-center drop-shadow-medium w-full p-2">
+                                <div class="flex flex-col justify-between m-4">
+                                    <p class="py-4">
+                                        While I have enough familiarity to build my own schemas (albeit with a slow start to remember syntax)
+                                        on all the database platforms involved in this project, I
+                                        am actively avoiding writing database scripts manually, instead relying on
+                                        what I can generate with Hibernate and archiecobbs'
+                                        <a href="https://github.com/archiecobbs/hibernate-jpa-schemagen"
+                                           class="italic drop-shadow-glow underline">
+                                            hibernate-jpa-schemagen</a> Maven plugin.
+                                    </p>
+                                    <hr>
+                                    <p class="py-4 self-center max-w-[70rem]">
+                                        This decision comes as a necessity to minimize the scope of things I need to pay attention to.
+                                        <br>
+                                        I do not believe this is the right approach to data storage, but it is the
+                                        most efficient for where I am as a developer.
+                                    </p>
+                                    <hr>
+                                    <p class="py-4">
+                                        You may also notice that my Kubernetes resources involving databases
+                                        do not have any non-ephemeral persistence. This is intentional, as I would
+                                        otherwise have to think about keeping the E2E test environment (my own PC)
+                                        the same between runs. This is a problem for future me.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                        <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
+                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                Middleware
+                            </h1>
+                            <div class="flex flex-row justify-center text-slate-50/95 drop-shadow-medium w-full p-2">
+                                <div class="flex flex-col justify-between m-4">
+                                    <p class="py-4">
+                                        Since my main focus is on learning Java/Spring, I only devoted enough attention
+                                        to tools like Graylog and Prometheus to be able to deploy them on kubernetes, configure basic settings
+                                        such as listening ports, and to integrate them to my Java artifacts.
+                                    </p>
+                                    <hr>
+                                    <p class="py-4 self-center max-w-[70rem]">
+                                        This is again to minimize the scope of things I need to pay attention to.
+                                    </p>
+                                    <hr>
+                                    <p class="py-4">
+                                        I will re-visit the official documentation looking for interesting features
+                                        to implement in the second release in January.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                        <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
+                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                More Soon
+                            </h1>
+                            <div class="flex flex-row justify-center text-slate-50/95 drop-shadow-medium w-full p-2">
+                                <div class="flex flex-col justify-between m-4">
+                                    <p class="py-4">
+                                        More details and graphics coming at some point in December.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </template>
         </template>
 

@@ -6,10 +6,6 @@ import socialButtons1 from './socialButtons1'
 import projectsUtils from './projectsUtils'
 import navigation from './navigation'
 
-for(const project in projectsUtils().getProjects()) {
-    await projectsUtils().fetchSections(project);
-}
-
 const global = {
     ...utils(),
     ...navigation()
