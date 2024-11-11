@@ -1,116 +1,127 @@
-import projects from "./projectsUtils";
-
-export default () => ({data, navigate});
-
-let data = {
-    project: {},
-    hasProject: false,
-    pages: {
-        index: true,
-        projects: false,
-        about: false,
-        tpdan: false,
-        speeed: false
-    },
-    refresh
-}
-
-initialize();
-
-function refresh() {
-    location.reload()
-}
-
-function setPage(to) {
-    data = navigate(to);
-}
+export default () => ({data, navigate, initialize, back});
 
 function navigate(next) {
-    for(const page in data.pages) {
-        data.pages[page] = false;
-    }
-    data.pages[next] = true;
-    window.history.pushState({}, '', pathFor(next));
+    transitions.doAction(data.pageStack.at(-1), next, data);
+    pushPath();
     return {...data}; // must be a new object because Alpine sucks (no deep-check for changes when re-assigning the same value)
 }
 
+function back() {
+    if( data.pageStack.length <= 1 ) return {...data};
+    transitions.doAction(data.pageStack.at(-1), data.pageStack.at(-2), data);
+    pushPath();
+    return {...data};
+}
+
+function pushPath() {
+    let fullPath = '/';
+    for (const page of data.pageStack) {
+        if (page !== 'index') fullPath += page + '/';
+    }
+    window.history.pushState({}, '', fullPath);
+}
+
 function initialize() {
-    const path = window.location.pathname.split('/');
-    let handle = firstLevelPath;
-    for (const str of path.values()) {
-        if (str !== '') handle = handle(str);
+    let path = window.location.pathname.split('/').reverse();
+    let data = new NavigationData();
+    if(path.length < 1) return data;
+    path.pop(); // rm empty string caused by split operation
+    let from = path.pop();
+    transitions.doAction('index',from,data);
+    for (const to of path.values()) {
+        transitions.doAction(from, to, data);
+        from = to;
     }
-    handle();
+    return data;
 }
 
-function firstLevelPath(str) {
-    switch(str) {
-        case 'proyectos':
-        case 'projects':
-            return handler(projectsLevelPath,'/');
-        case 'acerca':
-        case 'about':
-            return terminalHandler(handler(setPage,'about'));
-        default:
-            return terminalHandler(home);
+class Transitions {
+    constructor() {
+        this.map = new Map();
+        this.add(new PathTransition("index", "projects", (data) => {data.to('projects')}))
+            .add(new PathTransition("index", "about", (data) => {data.to('about')}))
+            .add(new PathTransition("projects", "index", (data) => {data.to('index')}))
+            .add(new PathTransition("projects", "tpdan", (data) => {data.to('tpdan')}))
+            .add(new PathTransition("projects", "speeed", (data) => {data.to('speeed')}))
+            .add(new PathTransition("tpdan", "index", (data) => {data.to('index')}))
+            .add(new PathTransition("tpdan", "projects", (data) => {data.to('projects')}))
+            .add(new PathTransition("speeed", "index", (data) => {data.to('index')}))
+            .add(new PathTransition("speeed", "projects", (data) => {data.to('projects')}));
     }
-}
 
-function projectsLevelPath(str) {
-    let sanitized = '';
-    switch (str) {
-        case '/':
-            setPage('projects');
-            return terminalHandler(handler(setPage,'projects'));// this would never be called but wth
-        case 'tpdan':
-            sanitized = 'tpdan';
-            break;
-        case 'speeed':
-            sanitized = 'speeed';
-            break;
-        default:
-            return terminalHandler(home)
+    add(transition) {
+        let found = this.map.get(transition.from);
+        if ( found === undefined ) found = [];
+        found.push(transition);
+        this.map.set(transition.from, found);
+        return this;
     }
-    if (sanitized !== '/') {
-        const _projects = projects().getProjects();
-        data.project = _projects[sanitized];
-        data.hasProject = data.project !== undefined;
-    }
-    return terminalHandler(handler(setPage, sanitized));
-}
 
-function handler(func, withParam) {
-    return (param = withParam) => func(param);
-}
-
-function home() {
-    data.pages = navigate()
-}
-
-function terminalHandler(func) {
-    const forbiddenParam = 'secretSpicyStringXD'
-    const callOnEmptyParam = ((typeof func === 'function') ? func : home);
-    return (param = forbiddenParam) => {
-        if (param === forbiddenParam) {
-            callOnEmptyParam();
-        } else {
-            // if this function is called with a parameter, the handle loop continued unexpectedly. This contains its behavior
-            return terminalHandler(home);
+    doAction(from, to, data) {
+        const transitions = this.map.get(from);
+        for (const transition of transitions) {
+            if(transition.to === redirects.apply(to)) return transition.action(data);
         }
+        console.log("Action from: "+from+", to: "+to+" not found.");
     }
 }
 
-function pathFor(page) {
-    switch (page) {
-        case 'projects':
-            return '/projects';
-        case 'about':
-            return '/about';
-        case 'tpdan':
-            return '/projects/tpdan'
-        case 'speeed':
-            return '/projects/speeed'
-        default:
-            return '/';
+class PathTransition {
+    constructor(from,to,action) {
+        this.from = from;
+        this.to = to;
+        this.action = action;
     }
 }
+
+class Redirects {
+    constructor() {
+        this.map = new Map();
+        this.add("proyectos", "projects")
+            .add("acerca", "about")
+            .add("sobremi", "about");
+    }
+
+    add(from, to) {
+        this.map.set(from, to);
+        return this;
+    }
+
+    apply(path) {
+        if(this.map.has(path)) return this.map.get(path);
+        return path;
+    }
+}
+
+class NavigationData {
+    constructor() {
+        this.project = {};
+        this.hasProject = false;
+        this.pages = {
+            index: true,
+            projects: false,
+            about: false,
+            tpdan: false,
+            speeed: false
+        };
+        this.pageStack = ['index'];
+    }
+
+    to(next) {
+        if( this.pageStack.length > 1 && redirects.apply(this.pageStack.at(-2)) === redirects.apply(next) ) {
+            this.pageStack.pop();
+            next = this.pageStack.pop();// Pop twice because of push down below. Use popped value to avoid overwriting with redirects.
+        }
+        for (const page in this.pages) {
+            if (this.pages[page]) {
+                this.pages[page] = false;
+            }
+        }
+        this.pageStack.push(next);
+        this.pages[redirects.apply(next)] = true;
+    }
+}
+
+const transitions = new Transitions();
+const redirects = new Redirects();
+let data = initialize();
