@@ -202,6 +202,32 @@
         </template>
 
         <template x-teleport="#projects-sections" x-data="projectsUtils">
+            <template x-if="data.pages.about">
+                <div class="contents text-[1.2rem]">
+                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                        <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
+                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                Soon
+                            </h1>
+                            <div class="flex flex-row justify-center text-slate-50/95 drop-shadow-medium w-full p-2">
+                                <div class="flex flex-col justify-between m-4">
+                                    <p class="py-4">
+                                        I am an 'Information Systems Engineering' student looking for a job as
+                                        a Java developer.
+                                    </p>
+                                    <hr>
+                                    <p class="py-4 self-center max-w-[70rem]">
+                                        I will expand on this section when I feel like it.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </template>
+        </template>
+
+        <template x-teleport="#projects-sections" x-data="projectsUtils">
             <template x-if="data.pages.speeed">
                 <div class="contents text-[1.2rem]">
                     <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
