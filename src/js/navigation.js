@@ -40,6 +40,7 @@ class Transitions {
         this.map = new Map();
         this.add(new PathTransition("index", "projects", (data) => {data.to('projects')}))
             .add(new PathTransition("index", "about", (data) => {data.to('about')}))
+            .add(new PathTransition("about", "index", (data) => {data.to('index')}))
             .add(new PathTransition("projects", "index", (data) => {data.to('index')}))
             .add(new PathTransition("projects", "tpdan", (data) => {data.to('tpdan')}))
             .add(new PathTransition("projects", "speeed", (data) => {data.to('speeed')}))

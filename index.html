@@ -157,6 +157,13 @@
            </div>
        </template>
 
+        <!-- about -->
+        <template x-teleport="#content-root">
+            <div id="about-root" class="contents">
+                <div id="about-main" class="contents" x-show="data.pages.about"></div>
+            </div>
+        </template>
+
         <!-- projects -->
         <template x-teleport="#content-root">
             <div id="projects-root" class="contents">
@@ -201,7 +208,7 @@
             </div>
         </template>
 
-        <template x-teleport="#projects-sections" x-data="projectsUtils">
+        <template x-teleport="#about-main">
             <template x-if="data.pages.about">
                 <div class="contents text-[1.2rem]">
                     <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
