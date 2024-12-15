@@ -22,10 +22,9 @@ function pushPath() {
 }
 
 function initialize() {
-    let path = window.location.pathname.split('/').reverse();
+    let path = window.location.pathname.split('/').reverse().filter(p => p !== '');
     let data = new NavigationData();
     if(path.length < 1) return data;
-    path.pop(); // rm empty string caused by split operation
     let from = path.pop();
     transitions.doAction('index',from,data);
     for (const to of path.values()) {
