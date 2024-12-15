@@ -50,13 +50,13 @@
 </head>
 <body class="h-dvh w-full box-content overflow-auto" x-data="global" @popstate.window="data = back()">
     <!-- background -->
-    <div id="bg-0" class="absolute inset-0 z-0 drop-shadow-bg bg-gradient-to-br from-darkerer-cata/90 via-darker-cata/90 to-dark-cata/90 from-45% via-85% to-95%"></div>
+    <div id="bg-0" class="fixed inset-0 z-0 drop-shadow-bg bg-gradient-to-br from-darkerer-cata/90 via-darker-cata/90 to-dark-cata/90 from-45% via-85% to-95%"></div>
 
     <!-- display -->
     <div x-cloak class="contents">
         <div id="root" class="absolute z-10 flex flex-col inset-0" x-cloak>
 
-            <div id="topbar" class="sticky h-16 border-b-4 border-y-clear-cata w-full">
+            <div id="topbar" class="sticky min-h-16 h-16 border-b-4 border-y-clear-cata w-full">
                 <div id="topbar-bg-0" class="absolute inset-0 drop-shadow-bg bg-gradient-to-b from-darkest-cata/85 to-darkest-cata/35 from-40% to-80%"></div>
                 <div id="topbar-content" class="absolute inset-0 grid grid-cols-3 grid-rows-1">
                     <a class="contents size-fit"
@@ -187,15 +187,15 @@
         <!-- projects-main  -->
         <template x-teleport="#projects-main">
             <div class="contents" x-data="projectsUtils">
-                <div class="contents text-slate-50" x-data="{projects: getProjects()}">
+                <div class="contents text-clear-cata" x-data="{projects: getProjects()}">
                     <div class="grid grid-cols-2 grid-rows-1 items-center justify-items-center size-full">
                         <template x-for="project of projects">
                             <a :href="project.path"> <!-- @click="data = navigate(project.key); data.refresh()" -->
-                                <div class="p-4 box-content border-2 border-slate-50 rounded-3xl group transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-glow opacity-85 hover:opacity-100 hover:bg-gradient-to-b hover:to-slate-700/25 hover:from-slate-800/10">
+                                <div class="p-4 box-content border-2 border-clear-cata rounded-3xl group transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-glow opacity-85 hover:opacity-100 hover:bg-gradient-to-b hover:to-darkest-cata/25 hover:from-darker-cata/25"> <!-- TODO group hover -->
                                     <section class="grid h-[69dvh] w-[45dvw] justify-items-center grid-rows-[19%,69%,12%] grid-cols-[100%]">
                                         <div class="flex flex-col justify-start">
                                             <h1 x-text="project.title" class="text-center size-fit self-center text-5xl font-serif font-bold"></h1>
-                                            <div class="h-0 mt-2 w-4/5 border-b-2 border-b-slate-50 self-center"></div>
+                                            <div class="h-0 mt-2 w-4/5 border-b-2 border-b-clear-cata self-center"></div>
                                             <p x-text="project.desc" class="text-center font-serif size-fit italic"></p>
                                         </div>
                                         <div class="flex flex-col justify-center align-middle size-full self-center">
@@ -223,12 +223,12 @@
         <template x-teleport="#about-main">
             <template x-if="data.pages.about">
                 <div class="contents text-[1.2rem]">
-                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                 Soon
                             </h1>
-                            <div class="flex flex-row justify-center text-slate-50/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         I am an 'Information Systems Engineering' student looking for a job as
@@ -249,12 +249,12 @@
         <template x-teleport="#projects-sections" x-data="projectsUtils">
             <template x-if="data.pages.speeed">
                 <div class="contents text-[1.2rem]">
-                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                 Soon
                             </h1>
-                            <div class="flex flex-row justify-center text-slate-50/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         This project is the site you are currently reading. It's hosted for
@@ -283,12 +283,12 @@
         <template x-teleport="#projects-sections" x-data="projectsUtils">
             <template x-if="data.pages.tpdan">
                 <div class="contents text-[1.2rem]">
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                 Overview
                             </h1>
-                            <div class="flex flex-row justify-center text-slate-50/95 text-center drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-clear-cata/95 text-center drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="pb-12 italic">The TPDAN Project. A marvel of science and engineering.</p>
                                     <p class="py-4">
@@ -323,12 +323,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-start h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-start h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow">
-                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                 Requirements
                             </h1>
-                            <div class="flex flex-col xl:flex-row text-slate-50/95 drop-shadow-medium justify-stretch w-full p-2">
+                            <div class="flex flex-col xl:flex-row text-clear-cata/95 drop-shadow-medium justify-stretch w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <hr>
                                     <p class="py-4">
@@ -365,11 +365,11 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-start h-fit w-full bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-start h-fit w-full bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
                             <div class="flex flex-row justify-center text-slate-50/95 text-start drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
-                                    <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                    <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                         Goals
                                     </h1>
                                     <p class="pt-4 pb-1">
@@ -410,12 +410,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                 Maven
                             </h1>
-                            <div class="flex flex-row justify-center text-slate-50/95 text-center drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-clear-cata/95 text-center drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         When I strated working on this, I wanted to be able to interact
@@ -440,11 +440,11 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-end h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-end h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <div class="flex flex-row justify-center text-slate-50/95 text-end drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-clear-cata/95 text-end drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
-                                    <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                                    <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                         Spring Boot
                                     </h1>
                                     <p class="py-4 ">
@@ -464,12 +464,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                 Databases
                             </h1>
-                            <div class="flex flex-row justify-center text-slate-50/95 text-center drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-clear-cata/95 text-center drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         While I have enough familiarity to build my own schemas
@@ -501,12 +501,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
                             <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
                                 Middleware
                             </h1>
-                            <div class="flex flex-row justify-center text-slate-50/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         Since my main focus is on learning Java/Spring,
@@ -531,12 +531,12 @@
                     </section>
 
 
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                 Transactions
                             </h1>
-                            <div class="flex flex-row justify-center text-slate-50/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         As of writing this (December 9, 2024), I am working on achieving robust
@@ -560,12 +560,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-jblack/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
                                 More Soon
                             </h1>
-                            <div class="flex flex-row justify-center text-slate-50/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         More details and graphics coming at some point in December.
