@@ -39,6 +39,8 @@ class Transitions {
         this.map = new Map();
         this.add(new PathTransition("index", "projects", (data) => {data.to('projects')}))
             .add(new PathTransition("index", "about", (data) => {data.to('about')}))
+            .add(new PathTransition("index", "notworking", (data) => {data.to('notworking')}))
+            .add(new PathTransition("notworking", "index", (data) => {data.to('index')}))
             .add(new PathTransition("about", "index", (data) => {data.to('index')}))
             .add(new PathTransition("projects", "index", (data) => {data.to('index')}))
             .add(new PathTransition("projects", "tpdan", (data) => {data.to('tpdan')}))
@@ -102,7 +104,8 @@ class NavigationData {
             projects: false,
             about: false,
             tpdan: false,
-            speeed: false
+            speeed: false,
+            notworking: false
         };
         this.pageStack = ['index'];
     }
