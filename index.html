@@ -23,7 +23,7 @@
                     <img :src="btn.src" :alt="btn.alt"
                          @dragstart.prevent
                          class="p-2 transition-all ease-in-out duration-150 drop-shadow-strong"
-                         :class="(btn.link ? `opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-glow` : `opacity-25 group-hover:opacity-50`)">
+                         :class="(btn.link ? `opacity-85 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-glow` : `opacity-25 group-hover:opacity-50`)">
                 </a>
             </template>
         </div>
@@ -50,28 +50,51 @@
 </head>
 <body class="h-dvh w-full box-content overflow-auto" x-data="global" @popstate.window="data = back()">
     <!-- background -->
-    <div id="bg-0" class="fixed inset-0 z-0 drop-shadow-bg bg-gradient-to-br from-darkerer-cata/90 via-darker-cata/90 to-dark-cata/90 from-45% via-85% to-95%"></div>
+    <div id="bg-0" class="fixed inset-0 z-0 flex flex-col-reverse bg-background">
+        <div id="bg-0-0" class="inset-x-0 h-2/3 bg-gradient-to-br from-transparent from-50% via-foreground/50 via-75% to-foreground/80 to-95%"></div>
+    </div>
 
     <!-- display -->
     <div x-cloak class="contents">
         <div id="root" class="absolute z-10 flex flex-col inset-0" x-cloak>
 
-            <div id="topbar" class="sticky min-h-16 h-16 border-b-2 border-y-clear-cata w-full">
-                <div id="topbar-bg-0" class="absolute inset-0 drop-shadow-bg bg-gradient-to-b from-darkest-cata/85 to-darkest-cata/35 from-40% to-80%"></div>
+            <div id="topbar" class="sticky min-h-16 h-16 border-b-2 border-y-border w-full">
+                <div id="topbar-bg-0" class="absolute inset-0 bg-foreground">
+                    <div id="topbar-bg-0-0" class="absolute inset-0 bg-gradient-to-t from-highlight/5 from-0% to-transparent to-30%"></div>
+                </div>
                 <div id="topbar-content" class="absolute inset-0 p-[0.3rem] grid grid-cols-3 grid-rows-1">
                     <a class="contents size-fit"
                        href="/">
                         <img src="/img/favicon.png" alt="site logo"
                              @dragstart.prevent
-                             class="p-2 opacity-70 h-full transition-all duration-200 ease-in-out hover:opacity-100 hover:scale-110 hover:drop-shadow-glow">
+                             class="p-2 opacity-85 h-full transition-all duration-200 ease-in-out hover:opacity-100 hover:scale-110 hover:drop-shadow-glow">
                     </a>
-                    <div class="flex flex-row justify-center text-slate-50 grow"
+                    <div class="flex flex-row justify-center text-text grow"
                          x-html="getTemplateHTMLById('social_btns1')">
                     </div>
                 </div>
             </div>
 
-            <div id="content-root" class="relative size-full flex flex-col">
+            <div id="content-root" class="relative size-0 overflow-hidden lg:overflow-scroll lg:size-full flex flex-col">
+            </div>
+            <div id="content-responsive" class="relative size-full lg:size-0 lg:overflow-hidden">
+                <div class="size-full flex flex-row justify-center text-text">
+                    <div class="relative p-4 w-full h-fit flex flex-col self-center justify-center">
+                        <p class="text-7xl font-serif text-center drop-shadow-text">
+                            Sorry!
+                        </p>
+                        <hr class="size-1/3 self-center my-4">
+                        <p class="text-3xl font-serif text-center drop-shadow-text">
+                            Your screen is not supported by this website. <br>
+                            Please come back when you have a more normal screen.
+                        </p>
+                        <hr class="size-1/3 self-center my-4">
+                        <p class="text-xl font-serif text-center drop-shadow-text">
+                            This message was brought to you by: <br>
+                            The Responsive Last Society.
+                        </p>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -84,8 +107,8 @@
         <template x-teleport="#content-root">
             <div class="contents" x-show="(data.pages.index || data.pages.notworking)">
                 <div id="index-layer1" class="absolute inset-0">
-                    <div id="index-intro" class="relative h-2/5"></div>
-                    <div id="index-slider" class="relative h-3/5"></div>
+                    <div id="index-intro" class="relative h-1/3"></div>
+                    <div id="index-slider" class="relative h-2/3"></div>
                 </div>
 
             </div>
@@ -93,9 +116,9 @@
 
         <!-- index-intro -->
         <template x-teleport="#index-intro">
-            <div class="absolute inset-0 flex flex-col justify-center border-b-2 border-y-clear-cata">
+            <div class="absolute inset-0 flex flex-col justify-center border-b-2 border-border">
                 <div class="py-4 h-fit w-full">
-                    <div class="font-serif text-center drop-shadow-text text-clear-cata select-none">
+                    <div class="font-serif text-center drop-shadow-text text-text select-none">
                         <h1 class="text-7xl font-thin p-2">Joaquín Bazán</h1>
                         <div class="grid grid-cols-[1fr,auto,1fr] justify-items-center p-2">
                             <h2 class="line-through justify-self-end self-end size-fit pr-[0.3rem] opacity-90">Full-stack</h2>
@@ -111,7 +134,7 @@
            <div class="absolute inset-0 flex flex-row bg-bottom bg-cover"
                 x-data="content1"
                 :style="{ 'background-image': 'url('+currentImage+')'}">
-               <div id="content-1-left-control" class="h-full w-1/5 cursor-pointer transition-opacity ease-in duration-500 bg-gradient-to-l from-transparent via-darkest-cata/50 to-darkest-cata/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
+               <div id="content-1-left-control" class="h-full w-1/5 cursor-pointer transition-opacity ease-in duration-500 bg-gradient-to-l from-transparent via-background/50 to-background/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
                     x-data="{btns: []}"
                     @click="currentImage = previousImage()"
                     @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
@@ -123,7 +146,7 @@
                <div id="content-1-main" class="relative flex flex-col justify-start grow">
                     <div id="index-slider-overlay" class="absolute inset-0"></div>
                </div>
-               <div id="content-1-right-control" class="h-full w-1/5 cursor-pointer transition-opacity ease-in duration-500 bg-gradient-to-r from-transparent via-darkest-cata/50 to-darkest-cata/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
+               <div id="content-1-right-control" class="h-full w-1/5 cursor-pointer transition-opacity ease-in duration-500 bg-gradient-to-r from-transparent via-background/50 to-background/80 opacity-60 hover:opacity-100 from-5% via-35% to-75%"
                     x-data="{btns: []}"
                     @click="currentImage = nextImage()"
                     @mouseenter="btns.forEach((btn) => btn.dispatchEvent(new CustomEvent('button_hover')))"
@@ -137,8 +160,8 @@
 
         <template x-teleport="#index-slider-overlay">
             <div class="absolute inset-0 flex flex-row justify-center">
-                <div class="absolute size-fit p-6 mt-4 bg-darkest-cata/50 border-2 border-clear-cata drop-shadow-bg rounded-full">
-                    <div class="text-clear-cata font-serif drop-shadow-text select-none">
+                <div class="absolute size-fit p-6 mt-4 bg-background/50 border-2 border-border drop-shadow-bg rounded-full">
+                    <div class="text-text font-serif drop-shadow-text select-none">
                         <div class="flex flex-row justify-center align-middle w-full h-fit">
                             <img src="/img/stop_police.png" alt="police emoji signaling to stop"
                                  @dragstart.prevent
@@ -148,19 +171,19 @@
                         <p class="text-2xl self-center text-center">
                             You're here too soon. We're not ready.<br>
                             For now, you may read about my
-                            <a class="inline-block hover:drop-shadow-glow hover:scale-105 cursor-pointer"
+                            <a class="inline-block hover:drop-shadow-glow hover:text-highlight hover:scale-105 cursor-pointer"
                                @click="data = navigate('projects')">
                                 <i><u>projects</u></i></a>
                             and
-                            <a class="inline-block hover:drop-shadow-glow hover:scale-105 cursor-pointer"
+                            <a class="inline-block hover:drop-shadow-glow hover:text-highlight hover:scale-105 cursor-pointer"
                                @click="data = navigate('about')">
                                 <i><u>about me</u></i></a>
                             .
                         </p>
                     </div>
                     <div class="flex flex-row h-fit justify-center">
-                        <div class="text-clear-cata font-thin font-serif">
-                            <button class="relative inset-y-2 italic text-2xl py-2 px-6 mt-4 rounded-full border-clear-cata border opacity-90 transition-all duration-200 ease-in-out hover:opacity-100 hover:scale-110 hover:drop-shadow-glow"
+                        <div class="text-text font-thin font-serif">
+                            <button class="relative inset-y-2 italic text-2xl py-2 px-6 mt-4 rounded-full border-border border opacity-90 transition-all duration-200 ease-in-out hover:text-highlight hover:opacity-100 hover:scale-110 hover:drop-shadow-glow"
                                     @click="data = navigate('notworking')">
                                 Got it!</button>
                         </div>
@@ -172,12 +195,12 @@
         <!-- not-working -->
         <template x-teleport="#root">
             <div id="not-working-root" class="absolute inset-0 select-none" x-show="data.pages.notworking">
-                <div id="not-working-bg" class="absolute inset-0 z-50 drop-shadow-bg bg-darkest-cata/75"></div>
+                <div id="not-working-bg" class="absolute inset-0 z-50 drop-shadow-bg bg-background/75"></div>
                 <div id="not-working-content" class="absolute inset-0 z-50 flex flex-col justify-center">
-                    <div class="relative flex flex-row size-3/5 rounded-full overflow-hidden self-center border border-clear-cata bg-darkest-cata/75 drop-shadow-bg">
+                    <div class="relative flex flex-row size-3/5 rounded-full overflow-hidden self-center border border-border bg-background/75 drop-shadow-bg">
                         <img src="/img/female-worker.png" alt="Female construction worker."
                             class="h-4/6 self-end opacity-80 ">
-                        <div class="absolute inset-x-0 h-fit p-12 flex flex-col justify-center text-clear-cata">
+                        <div class="absolute inset-x-0 h-fit p-12 flex flex-col justify-center text-text">
                             <p class="text-7xl font-serif text-center drop-shadow-text">
                                 Sorry!
                             </p>
@@ -186,9 +209,9 @@
                                 That button doesn't do anything yet.
                             </p>
                         </div>
-                        <div class="absolute inset-0 p-8 flex flex-col-reverse justify-start text-clear-cata">
-                            <div class="text-clear-cata font-thin font-serif self-center">
-                                <button class="relative inset-y-2 italic text-5xl py-2 px-6 mt-4 rounded-full border-clear-cata border opacity-90 transition-all duration-200 ease-in-out hover:opacity-100 hover:scale-110 hover:drop-shadow-glow"
+                        <div class="absolute inset-0 p-8 flex flex-col-reverse justify-start text-text">
+                            <div class="text-text font-thin font-serif self-center">
+                                <button class="relative inset-y-2 italic text-5xl py-2 px-6 mt-4 rounded-full border-border border opacity-90 transition-all duration-200 ease-in-out hover:text-highlight hover:opacity-100 hover:scale-110 hover:drop-shadow-glow"
                                         @click="data = navigate('index')">
                                     Got it!</button>
                             </div>
@@ -208,42 +231,54 @@
         <!-- projects -->
         <template x-teleport="#content-root">
             <div id="projects-root" class="contents">
-                <div id="projects-main" class="contents" x-show="data.pages.projects"></div>
-                <div id="projects-sections" class="contents" x-show="data.pages.tpdan || data.pages.speeed"></div>
+                <div id="projects-layer1" class="contents">
+                    <div id="projects-main" class="contents" x-show="data.pages.projects"></div>
+                    <div id="projects-sections" class="contents" x-show="data.pages.tpdan || data.pages.speeed"></div>
+                </div>
             </div>
         </template>
 
         <!-- projects-main  -->
         <template x-teleport="#projects-main">
             <div class="contents" x-data="projectsUtils">
-                <div class="contents text-clear-cata" x-data="{projects: getProjects()}">
-                    <div class="grid grid-cols-2 grid-rows-1 items-center justify-items-center size-full">
-                        <template x-for="project of projects">
-                            <a :href="project.path"> <!-- @click="data = navigate(project.key); data.refresh()" -->
-                                <div class="p-4 box-content border-2 border-clear-cata rounded-3xl group transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-glow opacity-85 hover:opacity-100 hover:bg-gradient-to-b hover:to-darkest-cata/25 hover:from-darker-cata/25"> <!-- TODO group hover -->
-                                    <section class="grid h-[69dvh] w-[45dvw] justify-items-center grid-rows-[19%,69%,12%] grid-cols-[100%]">
-                                        <div class="flex flex-col justify-start">
-                                            <h1 x-text="project.title" class="text-center size-fit self-center text-5xl font-serif font-bold"></h1>
-                                            <div class="h-0 mt-2 w-4/5 border-b-2 border-b-clear-cata self-center"></div>
-                                            <p x-text="project.desc" class="text-center font-serif size-fit italic"></p>
-                                        </div>
-                                        <div class="flex flex-col justify-center align-middle size-full self-center">
-                                            <img :src="project.img" class="py-4 px-10 aspect-video h-full">
-                                        </div>
-                                        <div class="flex flex-col justify-start overflow-hidden self-center size-full">
-                                            <ul class="flex flex-row flex-wrap justify-center">
-                                                <template x-for="(item, index) in project.stack">
-                                                    <li class="flex flex-row max-h-[5rem] align-middle">
-                                                        <p x-text="item" class="self-center px-2"></p>
-                                                        <p class="self-center font-mono font-bold" x-show="(index+1) < project.stack.length">—</p>
-                                                    </li>
-                                                </template>
-                                            </ul>
-                                        </div>
-                                    </section>
-                                </div>
-                            </a>
-                        </template>
+                <div class="contents" x-data="{projects: getProjects()}">
+                    <div class="absolute inset-0 flew flex-col">
+                        <div class="relative inset-x-0 h-1/3 py-4 border-b-2 border-border font-serif text-center drop-shadow-text text-text select-none">
+                            <h1 class="text-7xl font-thin p-2">Check out my projects!</h1>
+                            <div class="grid grid-cols-[1fr,auto,1fr] justify-items-center p-2">
+                                <h2 class="line-through justify-self-end self-end size-fit pr-[0.3rem] opacity-90">I don't know what else to write here</h2>
+                                <h2 class="text-3xl italic self-center underline size-fit">My awesome projects</h2>
+                            </div>
+                        </div>
+                        <div class="relative inset-x-0 h-2/3 grid grid-cols-2 grid-rows-1 items-center justify-items-center">
+                            <template x-for="project of projects">
+                                <a class="relative size-full p-[3%]"
+                                   @click="data = navigate(project.key)">
+                                    <div class="size-full border-2 border-border rounded-3xl group opacity-90 transition-all duration-500 ease-in-out hover:scale-105 hover:opacity-100 hover:bg-foreground/50"> <!-- TODO group hover -->
+                                        <section class="size-full text-text p-[3%] grid justify-items-center grid-rows-[28%,57%,15%] grid-cols-[100%]">
+                                            <div class="flex flex-col justify-start">
+                                                <h1 x-text="project.title" class="text-center size-fit self-center text-5xl font-serif font-bold transition-shadow duration-500 ease-in-out group-hover:text-highlight group-hover:drop-shadow-glow"></h1>
+                                                <div class="h-0 mt-2 w-4/5 border-b-2 border-b-border self-center"></div>
+                                                <p x-text="project.desc" class="text-center font-serif size-fit italic"></p>
+                                            </div>
+                                            <div class="flex flex-col justify-center align-middle size-full self-center">
+                                                <img :src="project.img" class="py-2 w-1/2 self-center h-full">
+                                            </div>
+                                            <div class="flex flex-col justify-start overflow-hidden self-center size-full">
+                                                <ul class="flex flex-row flex-wrap justify-center">
+                                                    <template x-for="(item, index) in project.stack">
+                                                        <li class="flex flex-row max-h-[5rem] align-middle">
+                                                            <p x-text="item" class="self-center px-2"></p>
+                                                            <p class="self-center font-mono font-bold" x-show="(index+1) < project.stack.length">—</p>
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </a>
+                            </template>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -252,12 +287,12 @@
         <template x-teleport="#about-main">
             <template x-if="data.pages.about">
                 <div class="contents text-[1.2rem]">
-                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                 Soon
                             </h1>
-                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         I am an 'Information Systems Engineering' student looking for a job as
@@ -278,12 +313,12 @@
         <template x-teleport="#projects-sections" x-data="projectsUtils">
             <template x-if="data.pages.speeed">
                 <div class="contents text-[1.2rem]">
-                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                 Soon
                             </h1>
-                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         This project is the site you are currently reading. It's hosted for
@@ -312,12 +347,12 @@
         <template x-teleport="#projects-sections" x-data="projectsUtils">
             <template x-if="data.pages.tpdan">
                 <div class="contents text-[1.2rem]">
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                 Overview
                             </h1>
-                            <div class="flex flex-row justify-center text-clear-cata/95 text-center drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 text-center drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="pb-12 italic">The TPDAN Project. A marvel of science and engineering.</p>
                                     <p class="py-4">
@@ -352,12 +387,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-start h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-start h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow">
-                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                 Requirements
                             </h1>
-                            <div class="flex flex-col xl:flex-row text-clear-cata/95 drop-shadow-medium justify-stretch w-full p-2">
+                            <div class="flex flex-col xl:flex-row text-text/95 drop-shadow-medium justify-stretch w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <hr>
                                     <p class="py-4">
@@ -394,11 +429,11 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-start h-fit w-full bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-start h-fit w-full bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <div class="flex flex-row justify-center text-slate-50/95 text-start drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 text-start drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
-                                    <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                                    <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                         Goals
                                     </h1>
                                     <p class="pt-4 pb-1">
@@ -439,12 +474,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                 Maven
                             </h1>
-                            <div class="flex flex-row justify-center text-clear-cata/95 text-center drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 text-center drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         When I strated working on this, I wanted to be able to interact
@@ -469,11 +504,11 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-end h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-end h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <div class="flex flex-row justify-center text-clear-cata/95 text-end drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 text-end drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
-                                    <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                                    <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                         Spring Boot
                                     </h1>
                                     <p class="py-4 ">
@@ -493,12 +528,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                 Databases
                             </h1>
-                            <div class="flex flex-row justify-center text-clear-cata/95 text-center drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 text-center drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         While I have enough familiarity to build my own schemas
@@ -530,12 +565,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-slate-50 text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                 Middleware
                             </h1>
-                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         Since my main focus is on learning Java/Spring,
@@ -560,12 +595,12 @@
                     </section>
 
 
-                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-justify bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                 Transactions
                             </h1>
-                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         As of writing this (December 9, 2024), I am working on achieving robust
@@ -589,12 +624,12 @@
                         </div>
                     </section>
 
-                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-darkest-cata/45 from-50% to-80% p-8">
+                    <section class="flex flex-row justify-center h-fit w-full text-center bg-gradient bg-gradient-to-t from-transparent to-background/45 from-50% to-80% p-8">
                         <div class="flex flex-col font-mono h-fit grow max-w-[80rem]">
-                            <h1 class="text-5xl text-clear-cata text-center italic drop-shadow-glow">
+                            <h1 class="text-5xl text-text text-center italic drop-shadow-glow">
                                 More Soon
                             </h1>
-                            <div class="flex flex-row justify-center text-clear-cata/95 drop-shadow-medium w-full p-2">
+                            <div class="flex flex-row justify-center text-text/95 drop-shadow-medium w-full p-2">
                                 <div class="flex flex-col justify-between m-4">
                                     <p class="py-4">
                                         More details and graphics coming at some point in December.
